@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>저속노화 말고 리버스에이징 — NMN이 세포를 되돌리는 이유</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:   #fdf7f2;
+    --ivory:   #f5ede4;
+    --border:  #e4d8cc;
+    --text:    #1c1c1c;
+    --mid:     #4a4a4a;
+    --muted:   #8a8a8a;
+    --navy:    #2c3e60;
+    --navy-dk: #1a2540;
+    --amber:   #c8841a;
+    --amber-lt:#fdf3e3;
+    --gold:    #d4a843;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+
+  section { padding: 52px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h1 { font-size: clamp(28px, 7vw, 40px); font-weight: 900; line-height: 1.25; }
+  h2 { font-size: clamp(22px, 5vw, 30px); font-weight: 700; line-height: 1.35; }
+  h3 { font-size: clamp(18px, 4vw, 22px); font-weight: 700; }
+
+  .tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .tag.gold { background: var(--amber); }
+
+  .lead {
+    font-size: 20px; font-weight: 500;
+    color: var(--mid); margin-top: 18px; line-height: 1.7;
+  }
+
+  .em   { color: var(--navy); font-weight: 700; }
+  .em-g { color: var(--amber); font-weight: 700; }
+
+  /* VB placeholder */
+  .vb {
+    background: var(--ivory); border-radius: 16px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px; color: #999; font-size: 13px;
+    text-align: center; padding: 24px 16px; margin: 28px 0;
+  }
+  .vb .vb-icon  { font-size: 28px; opacity: 0.5; }
+  .vb .vb-label { font-weight: 700; color: #666; font-size: 14px; }
+  .vb .vb-size  { font-size: 12px; color: #aaa; }
+
+  /* NAD+ 연령대별 바 */
+  .nad-bars { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+  .nad-bar-row { display: flex; align-items: center; gap: 12px; }
+  .nad-age { font-size: 14px; font-weight: 700; color: var(--mid); width: 36px; flex-shrink: 0; }
+  .nad-track {
+    flex: 1; height: 14px; background: var(--border);
+    border-radius: 99px; overflow: hidden;
+  }
+  .nad-fill { height: 100%; border-radius: 99px; background: var(--amber); transition: width 0.3s; }
+  .nad-pct { font-size: 13px; font-weight: 700; color: var(--amber); width: 36px; text-align: right; flex-shrink: 0; }
+
+  /* 노화 신호 체크리스트 */
+  .signal-list { display: flex; flex-direction: column; gap: 10px; margin: 28px 0; }
+  .signal-item {
+    background: var(--ivory); border-radius: 12px;
+    padding: 14px 18px; font-size: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .signal-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber); flex-shrink: 0;
+  }
+
+  /* 메커니즘 단계 */
+  .mech-flow { display: flex; flex-direction: column; gap: 0; margin: 28px 0; }
+  .mech-step {
+    background: var(--ivory); border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .mech-step .mech-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: var(--amber); margin-bottom: 4px;
+  }
+  .mech-step .mech-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .mech-step .mech-desc  { font-size: 14px; color: var(--mid); line-height: 1.6; }
+  .mech-arrow {
+    text-align: center; font-size: 20px;
+    color: var(--muted); opacity: 0.4; padding: 4px 0;
+  }
+
+  /* 비교 블록 */
+  .compare-wrap { overflow-x: auto; margin: 28px 0; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .compare-table th, .compare-table td {
+    padding: 12px 14px; text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table th { background: var(--ivory); font-weight: 700; font-size: 14px; color: var(--mid); }
+  .compare-table td:first-child { text-align: left; font-weight: 500; color: var(--mid); }
+  .compare-table .col-good { color: var(--amber); font-weight: 700; }
+  .compare-table .col-mid  { color: var(--navy); font-weight: 700; }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* 3가지 변화 */
+  .benefit-grid { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+  .benefit-row {
+    background: var(--ivory); border-radius: 14px;
+    padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px;
+  }
+  .benefit-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .benefit-name { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .benefit-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  /* 리뷰 */
+  .proof-bar {
+    display: flex; justify-content: space-around;
+    background: var(--ivory); border-radius: 16px;
+    padding: 24px 16px; margin: 28px 0; text-align: center;
+  }
+  .proof-item .proof-num {
+    font-size: clamp(26px, 6vw, 36px); font-weight: 900;
+    color: var(--navy); line-height: 1;
+  }
+  .proof-item .proof-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .review-list { display: flex; flex-direction: column; gap: 18px; margin: 28px 0; }
+  .review-item {
+    background: #fff; border-radius: 16px;
+    padding: 20px 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .review-stars { color: #f5a623; font-size: 16px; margin-bottom: 8px; }
+  .review-text  { font-size: 15px; color: var(--mid); line-height: 1.65; }
+  .review-meta  { font-size: 12px; color: #bbb; margin-top: 8px; }
+
+  /* 제품 스펙 */
+  .product-spec {
+    background: var(--ivory); border-radius: 16px;
+    padding: 24px 20px; margin: 28px 0;
+  }
+  .spec-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 15px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .spec-label { color: var(--muted); }
+  .spec-row .spec-val   { font-weight: 700; }
+
+  /* CTA */
+  section.cta-section { background: var(--navy-dk); color: #fff; }
+  section.cta-section .em-g { color: #f0c96a; }
+  .cta-btn {
+    display: block; background: var(--amber); color: #fff;
+    text-align: center; font-size: 18px; font-weight: 700;
+    padding: 18px 0; border-radius: 14px;
+    margin-top: 28px; text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ① HERO -->
+<section class="hero" style="background:var(--amber-lt); padding:64px 0;">
+<div class="wrap">
+  <div class="tag gold">리버스에이징</div>
+  <h1>저속노화는 늦추는 것,<br><span style="color:var(--amber);">리버스에이징은<br>되돌리는 것</span>이에요</h1>
+  <p class="lead">나이 드는 속도를 줄이는 게 아니라,<br>이미 늙어버린 세포를 젊게 되감는 거예요.</p>
+
+  <img src="assets/vb1_hero.png" alt="빛나는 피부의 활기찬 여성" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ② 노화 신호 -->
+<section>
+<div class="wrap">
+  <div class="tag">노화의 신호</div>
+  <h2>세포가 늙으면<br>이런 신호가 와요</h2>
+  <p style="margin-top:18px; color:var(--mid);">피부 탄력이 빠지고, 운동해도 회복이 느리고, 예전만큼 에너지가 없다면. 이건 단순한 피로가 아니에요. <span class="em">세포 에너지 자체가 줄어드는 신호예요.</span></p>
+
+  <div class="signal-list">
+    <div class="signal-item"><div class="signal-dot"></div>아침에 일어나도 개운하지 않아요</div>
+    <div class="signal-item"><div class="signal-dot"></div>피부 탄력이 눈에 띄게 빠졌어요</div>
+    <div class="signal-item"><div class="signal-dot"></div>운동해도 예전처럼 회복이 안 돼요</div>
+    <div class="signal-item"><div class="signal-dot"></div>집중력이 떨어지고 멍한 시간이 늘었어요</div>
+    <div class="signal-item"><div class="signal-dot"></div>예전보다 쉽게 지쳐요</div>
+  </div>
+
+  <img src="assets/vb2_cell.gif" alt="세포 에너지 시각화" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ③ NAD+ stat -->
+<section>
+<div class="wrap">
+  <div class="tag">NAD+ 고갈</div>
+  <h2>세포 에너지의 핵심,<br>NAD+가 사라지고 있어요</h2>
+  <p style="margin-top:18px; color:var(--mid);">NAD+는 세포 에너지 생산, DNA 복구, 노화 억제 유전자(시르투인) 활성화를 담당해요. 나이가 들수록 이 물질이 급격히 감소해요.</p>
+
+  <div class="nad-bars">
+    <div class="nad-bar-row">
+      <div class="nad-age">20대</div>
+      <div class="nad-track"><div class="nad-fill" style="width:100%;"></div></div>
+      <div class="nad-pct">100%</div>
+    </div>
+    <div class="nad-bar-row">
+      <div class="nad-age">30대</div>
+      <div class="nad-track"><div class="nad-fill" style="width:75%;"></div></div>
+      <div class="nad-pct">75%</div>
+    </div>
+    <div class="nad-bar-row">
+      <div class="nad-age">40대</div>
+      <div class="nad-track"><div class="nad-fill" style="width:48%; background:#c8841a;"></div></div>
+      <div class="nad-pct">48%</div>
+    </div>
+    <div class="nad-bar-row">
+      <div class="nad-age">50대</div>
+      <div class="nad-track"><div class="nad-fill" style="width:28%; background:#b06010;"></div></div>
+      <div class="nad-pct">28%</div>
+    </div>
+  </div>
+
+  <p style="color:var(--mid);">NAD+가 줄면 시르투인이 작동을 멈춰요. 시르투인은 세포 수명을 연장하고 노화를 억제하는 유전자예요. NAD+를 보충하지 않으면 세포는 계속 늙어가요.</p>
+</div>
+</section>
+
+<!-- ④ NMN 메커니즘 GIF -->
+<section>
+<div class="wrap">
+  <div class="tag gold">핵심 성분</div>
+  <h2>NMN이 하는 일 —<br>"세포를 되감는 전구체"예요</h2>
+  <p style="margin-top:18px; color:var(--mid);">NMN(니코틴아미드 모노뉴클레오타이드)은 체내에서 NAD+로 전환되는 전구체예요. NAD+를 직접 먹는 것보다 흡수율이 높고 세포 안까지 효과적으로 전달돼요.</p>
+
+  <img src="assets/vb3_mechanism.gif" alt="NMN 세포 메커니즘 애니메이션" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+
+  <div class="mech-flow">
+    <div class="mech-step">
+      <div class="mech-label">STEP 1</div>
+      <div class="mech-title">NMN 섭취</div>
+      <div class="mech-desc">소장에서 빠르게 흡수되어 혈류를 통해 세포로 전달돼요.</div>
+    </div>
+    <div class="mech-arrow">↓</div>
+    <div class="mech-step">
+      <div class="mech-label">STEP 2</div>
+      <div class="mech-title">NAD+ 전환</div>
+      <div class="mech-desc">세포 내에서 NAD+로 전환되어 미토콘드리아 에너지 생산을 재가동해요.</div>
+    </div>
+    <div class="mech-arrow">↓</div>
+    <div class="mech-step">
+      <div class="mech-label">STEP 3</div>
+      <div class="mech-title">시르투인 활성화</div>
+      <div class="mech-desc">노화 억제 유전자(SIRT1)가 켜지고, DNA 복구와 세포 재생이 시작돼요.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ⑤ 저속노화 vs 리버스에이징 -->
+<section>
+<div class="wrap">
+  <div class="tag">저속노화 vs 리버스에이징</div>
+  <h2>왜 NMN이<br>리버스에이징인가요</h2>
+  <p style="margin-top:18px; color:var(--mid);">저속노화는 생활습관으로 노화를 늦추는 것이에요. 리버스에이징은 세포 수준에서 이미 줄어든 기능을 복구하는 거예요. NMN은 후자예요.</p>
+
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>저속노화</th>
+          <th>리버스에이징 (NMN)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>접근 방식</td>
+          <td class="col-mid">노화 속도를 늦춤</td>
+          <td class="col-good">줄어든 기능을 복구</td>
+        </tr>
+        <tr>
+          <td>작용 부위</td>
+          <td class="col-mid">생활 습관, 외부</td>
+          <td class="col-good">세포 내부, NAD+ 직접 보충</td>
+        </tr>
+        <tr>
+          <td>체감 변화</td>
+          <td class="col-mid">악화 방지</td>
+          <td class="col-good">에너지, 피부, 회복력 회복</td>
+        </tr>
+        <tr>
+          <td>시작 시점</td>
+          <td class="col-mid">빠를수록 좋음</td>
+          <td class="col-good">NAD+ 감소 시작되는 30대부터</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ⑥ 3가지 체감 변화 -->
+<section>
+<div class="wrap">
+  <div class="tag">체감 변화</div>
+  <h2>꾸준히 먹으면<br>3가지가 달라져요</h2>
+
+  <div class="benefit-grid">
+    <div class="benefit-row">
+      <div class="benefit-icon">⚡</div>
+      <div>
+        <div class="benefit-name">세포 에너지</div>
+        <div class="benefit-desc">아침에 일어날 때 몸이 가벼워요. 오후 피로감이 줄고 하루가 더 길게 느껴져요.</div>
+      </div>
+    </div>
+    <div class="benefit-row">
+      <div class="benefit-icon">✨</div>
+      <div>
+        <div class="benefit-name">피부 탄력</div>
+        <div class="benefit-desc">안색이 맑아지고 탄력이 돌아와요. 주변에서 얼굴이 좋아졌다는 말이 나와요.</div>
+      </div>
+    </div>
+    <div class="benefit-row">
+      <div class="benefit-icon">💪</div>
+      <div>
+        <div class="benefit-name">회복력</div>
+        <div class="benefit-desc">운동 후 근육통이 줄고 회복이 빨라요. 컨디션이 전체적으로 안정돼요.</div>
+      </div>
+    </div>
+  </div>
+
+  <img src="assets/vb4_lifestyle.png" alt="건강하고 활기찬 40대 여성" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑦ 리뷰 -->
+<section class="reviews">
+<div class="wrap">
+  <div class="tag gold">실제 후기</div>
+  <h2>세포가 젊어지는 걸<br>체감했다는 이야기들</h2>
+
+  <div class="proof-bar">
+    <div class="proof-item">
+      <div class="proof-num">323개</div>
+      <div class="proof-label">누적 리뷰</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">99.4%</div>
+      <div class="proof-label">5점 비율</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">64.7%</div>
+      <div class="proof-label">재구매율</div>
+    </div>
+  </div>
+
+  <div class="review-list">
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">한 달 정도 꾸준히 먹어보니 신체 나이가 확실히 젊어지는 게 체감되어 정말 신기합니다. 세포 하나하나가 깨어나는 듯한 개운함이 느껴지고 20대 때의 활력이 다시 돌아오는 기분이에요. 안색이 맑아지고 탄탄해진 게 보여서 주변 친구들이 요즘 뭐 하냐고 물어봐요.</div>
+      <div class="review-meta">tmk55*** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">올해 딱 40되니까 피부 탄력부터 목 주름까지 눈에 보이더라고요. 아침에 푸석하고 맘에 안 들었는데, 먹기 시작하고 얼굴이 환해졌다는 게 느껴져서 놀랐어요. 진짜 40달고부터는 자기 관리의 싸움이라 제 몸을 위해 꾸준히 챙길 거예요.</div>
+      <div class="review-meta">hnj82*** / 재구매</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">요즘 저속노화에 관심이 많아서 골랐는데 체력적으로 도움을 받고 있어요. 아침에 일어날 때 덜 피곤하고 하루가 좀 더 가볍게 시작돼요. 주변에서 얼굴 좋아졌다고 뭐 하냐고 물어봐요.</div>
+      <div class="review-meta">sb3kt*** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">공백기 동안 오후에 유독 피로감이 높았어요. 그때 느꼈습니다. 이게 피부에만 국한되는 항노화가 아니고 신체에도 도움이 되는구나 하고요. 재주문하고 꾸준히 먹고 있어요.</div>
+      <div class="review-meta">ryu09*** / 재구매</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">10년 뒤의 나를 생각하면서 선택했어요. 나이 들수록 체력이나 회복력 차이가 느껴지니까요. 꾸준히 먹다 보니 컨디션이 전체적으로 안정된 느낌이 들어요. 아침에 일어날 때 덜 피곤하고 하루가 좀 더 가벼워요.</div>
+      <div class="review-meta">jw9k2*** / 구매 인증</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ⑧ 제품 스펙 -->
+<section class="product-section">
+<div class="wrap">
+  <div class="tag">루즈루틴 NMN</div>
+  <h2>식물성 NMN +<br>베타인 복합 포뮬러</h2>
+
+  <img src="assets/vb5_product_1.png" alt="루즈루틴 베타인 NMN정 제품" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+
+  <div class="product-spec">
+    <div class="spec-row">
+      <span class="spec-label">핵심 성분</span>
+      <span class="spec-val">식물성 NMN + 베타인</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">복용법</span>
+      <span class="spec-val">1일 1정, 식사와 함께</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">누적 리뷰</span>
+      <span class="spec-val">323개 / 5점 99.4%</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">재구매율</span>
+      <span class="spec-val">64.7%</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ⑨ CTA -->
+<section class="cta-section">
+<div class="wrap">
+  <h2><span class="em-g">세포가 되살아나는 것</span>을<br>느껴보고 싶다면</h2>
+  <p style="margin-top:18px; color:#ccc; line-height:1.7;">저속노화로 늦추는 것에서 한 단계 더.<br>리버스에이징으로 세포부터 되감아 보세요.</p>
+  <p style="margin-top:14px; color:#ccc;">1일 1정. 30대부터 시작하면 달라져요.</p>
+  <a href="https://smartstore.naver.com/looseroutine/products/10910473868" class="cta-btn">루즈루틴 NMN 보러가기</a>
+</div>
+</section>
+
+</body>
+</html>
