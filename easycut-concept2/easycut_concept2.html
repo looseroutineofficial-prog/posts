@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>루즈루틴 이지컷 — 야식 후 붓기</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #fdf7f2;
+      --cream2:     #f5ede4;
+      --cream3:     #ede3d8;
+      --border:     #e4d8cc;
+      --green:      #5a9e5a;
+      --green-dk:   #3d7a3d;
+      --green-lt:   #eaf4ea;
+      --green-deep: #1e3a1e;
+      --text:       #1c1c1c;
+      --mid:        #4a4a4a;
+      --muted:      #8a8a8a;
+      --rose:       #c4705a;
+      --rose-lt:    #fdf0ec;
+      --warm-dark:  #1e1a14;
+      --night:      #141018;
+      --amber:      #e8a020;
+      --review-bg:  #f5faf5;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      font-size: 18px;
+      line-height: 1.85;
+      word-break: keep-all;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .wrap { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--night);
+      color: #fff;
+      padding: 80px 0 72px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 75%, rgba(232,160,32,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 15px; color: var(--amber); font-weight: 600;
+      background: rgba(232,160,32,0.1);
+      display: inline-block; padding: 7px 20px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 7.5vw, 50px);
+      font-weight: 900; line-height: 1.2;
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero-sub {
+      font-size: clamp(18px, 4vw, 22px);
+      font-weight: 700; color: #ccc;
+      margin-bottom: 32px; line-height: 1.4;
+    }
+    .hero-desc {
+      font-size: 17px; color: #777;
+      max-width: 360px; margin: 0 auto 44px; line-height: 2.0;
+    }
+    .hero-scroll { font-size: 14px; color: #444; }
+    .hero-scroll::after {
+      content: ''; display: block;
+      width: 1px; height: 36px; background: #2a2a2a; margin: 10px auto 0;
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .sec-label {
+      display: inline-block; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--green-dk); background: var(--green-lt);
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .sec-label.amber { color: #a06010; background: #fef3dc; }
+    .sec-label.rose  { color: var(--rose); background: var(--rose-lt); }
+
+    /* ─── STORY SECTION ─── */
+    .story { padding: 72px 0; background: var(--cream); }
+    .story h2 { font-size: clamp(24px, 5vw, 34px); font-weight: 800; line-height: 1.35; margin-bottom: 20px; }
+    .story p  { font-size: 18px; color: var(--mid); margin-bottom: 18px; line-height: 1.9; }
+    .story p strong { color: var(--text); font-weight: 700; }
+
+    /* ─── WHY SECTION ─── */
+    .why-section { padding: 72px 0; background: #f0f5f0; }
+    .why-section h2 { font-size: clamp(24px,5vw,34px); font-weight: 800; line-height: 1.35; margin-bottom: 20px; }
+    .why-section > .wrap > p { color: var(--mid); font-size: 18px; margin-bottom: 16px; line-height: 1.9; }
+    .why-section > .wrap > p strong { color: var(--text); }
+
+    /* numbered step cards */
+    .step-row { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+    .step-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; display: flex; align-items: stretch;
+    }
+    .step-card .sc-num {
+      width: 56px; background: var(--green-lt);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; flex-shrink: 0; gap: 2px;
+    }
+    .step-card .sc-num .n { font-size: 22px; font-weight: 900; color: var(--green-dk); line-height: 1; }
+    .step-card .sc-num .u { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: 0.05em; }
+    .step-card .sc-body { padding: 20px 18px; }
+    .step-card .sc-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .step-card .sc-desc  { font-size: 16px; color: var(--mid); line-height: 1.8; }
+    .step-card .sc-desc strong { color: var(--rose); }
+
+    /* insight callout */
+    .insight-box {
+      margin: 32px 0; padding: 24px 22px;
+      background: var(--warm-dark); border-radius: 16px; color: #fff;
+    }
+    .insight-box .ib-label { font-size: 12px; letter-spacing: 0.2em; color: var(--amber); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+    .insight-box .ib-text  { font-size: 18px; line-height: 1.8; color: #e8e0d4; }
+    .insight-box .ib-text strong { color: var(--amber); }
+
+    /* ─── IMAGE / GIF PLACEHOLDER ─── */
+    .visual-block {
+      margin: 28px 0; border-radius: 16px; overflow: hidden;
+      border: 1.5px dashed var(--border); background: var(--cream2);
+    }
+    .visual-block .vb-label {
+      padding: 10px 16px; background: var(--cream3);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #bbb; font-weight: 700;
+    }
+    .visual-block .vb-label span {
+      background: #e0d8d0; border-radius: 4px; padding: 2px 7px; margin-right: 6px; color: #999;
+    }
+    .visual-block .vb-body {
+      padding: 36px 24px; text-align: center; color: var(--muted);
+      font-size: 16px; line-height: 1.8;
+      min-height: 180px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    .visual-block .vb-title { font-size: 17px; font-weight: 700; color: #888; margin-bottom: 4px; }
+    .visual-block.tall .vb-body  { min-height: 260px; }
+    .visual-block.short .vb-body { min-height: 130px; }
+    .visual-block.on-dark {
+      background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);
+    }
+    .visual-block.on-dark .vb-label { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    .visual-block.on-dark .vb-body  { color: #666; }
+
+    /* ─── PIVOT ─── */
+    .pivot-section { padding: 56px 0; background: var(--cream2); }
+    .pivot-section h2 { font-size: clamp(24px,5vw,34px); font-weight: 800; line-height: 1.35; margin-bottom: 16px; }
+    .pivot-section p  { font-size: 18px; color: var(--mid); margin-bottom: 16px; line-height: 1.9; }
+    .pivot-section p strong { color: var(--text); }
+
+    /* ─── INLINE REVIEW ─── */
+    .inline-review {
+      margin: 28px 0; padding: 22px 22px 22px 26px;
+      background: var(--review-bg); border-left: 3px solid var(--green);
+      border-radius: 0 12px 12px 0;
+    }
+    .inline-review .review-text { font-size: 17px; color: #333; line-height: 1.85; font-style: italic; }
+    .inline-review .review-meta { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .inline-review .stars    { color: #f5a623; font-size: 15px; }
+    .inline-review .reviewer { font-size: 14px; color: var(--muted); }
+    .inline-review .badge    { font-size: 13px; background: var(--green-lt); color: var(--green-dk); border-radius: 8px; padding: 3px 10px; font-weight: 600; }
+
+    /* ─── SOLUTION — 4단계 ─── */
+    .solution-section { padding: 72px 0; background: var(--cream); }
+    .solution-section h2 { font-size: clamp(24px,5vw,34px); font-weight: 800; line-height: 1.35; margin-bottom: 12px; }
+    .solution-section .sol-intro { font-size: 18px; color: var(--mid); margin-bottom: 8px; line-height: 1.9; }
+    .solution-section .sol-intro strong { color: var(--text); }
+
+    .ingredient-list { margin: 32px 0; display: flex; flex-direction: column; }
+    .ing-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      align-items: start; padding: 28px 0; border-bottom: 1px solid var(--border);
+    }
+    .ing-row:last-child { border-bottom: none; }
+    .ing-row.flip { direction: rtl; }
+    .ing-row.flip > * { direction: ltr; }
+    .ing-step {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--amber); background: #fef3dc;
+      display: inline-block; border-radius: 6px; padding: 3px 10px; margin-bottom: 6px;
+    }
+    .ing-tag {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green-dk); background: var(--green-lt);
+      display: inline-block; border-radius: 6px; padding: 3px 10px; margin-bottom: 10px; margin-left: 4px;
+    }
+    .ing-name   { font-size: 22px; font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 6px; }
+    .ing-from   { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+    .ing-benefit { font-size: 17px; color: var(--mid); line-height: 1.8; }
+    .ing-benefit strong { color: var(--text); }
+
+    /* ─── PRODUCT FEATURES ─── */
+    .feature-row { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+    .feature-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px 20px 20px 24px; border-left: 3px solid var(--green);
+    }
+    .feature-card .fc-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .feature-card .fc-desc  { font-size: 16px; color: var(--mid); line-height: 1.8; }
+
+    /* ─── SOCIAL PROOF ─── */
+    .proof-bar { background: var(--green-dk); color: #fff; padding: 24px 0; text-align: center; }
+    .proof-bar .pb-inner { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .proof-bar .pb-item  { text-align: center; }
+    .proof-bar .pb-num   { font-size: 32px; font-weight: 800; line-height: 1; }
+    .proof-bar .pb-label { font-size: 14px; opacity: 0.8; margin-top: 4px; }
+
+    /* ─── REVIEWS ─── */
+    .reviews-section { padding: 72px 0; background: var(--cream2); }
+    .reviews-section h2 { font-size: clamp(24px,5vw,34px); font-weight: 800; line-height: 1.35; margin-bottom: 8px; }
+    .reviews-section .sub-head { font-size: 17px; color: var(--mid); margin-bottom: 36px; line-height: 1.7; }
+
+    .review-stack { display: flex; flex-direction: column; gap: 12px; }
+    .rv-card {
+      background: #fff; border-radius: 16px; padding: 24px 20px; border: 1px solid var(--border);
+    }
+    .rv-card .rv-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+    .rv-card .rv-stars  { color: #f5a623; font-size: 16px; letter-spacing: 1px; }
+    .rv-card .rv-badge  { font-size: 13px; background: var(--cream2); border-radius: 10px; padding: 4px 12px; color: var(--muted); font-weight: 600; }
+    .rv-card .rv-kw     { font-size: 12px; font-weight: 700; color: var(--amber); background: #fef3dc; border-radius: 8px; padding: 3px 10px; }
+    .rv-card .rv-body   { font-size: 17px; color: #3a3a3a; line-height: 1.85; margin-bottom: 10px; }
+    .rv-card .rv-footer { font-size: 14px; color: var(--muted); }
+    .rv-card .rv-repurchase {
+      margin-top: 14px; padding: 14px 16px;
+      background: var(--green-lt); border-radius: 10px;
+      font-size: 15px; color: var(--green-dk); line-height: 1.75;
+    }
+    .rv-card .rv-repurchase::before { content: '↩ 재구매 후기 · '; font-weight: 700; }
+    .rv-featured {
+      background: var(--warm-dark); color: #fff;
+      border-radius: 16px; padding: 28px 22px; margin-bottom: 12px;
+    }
+    .rv-featured .rv-kw-dark { font-size: 12px; font-weight: 700; color: var(--amber); background: rgba(232,160,32,0.15); border-radius: 8px; padding: 3px 10px; display: inline-block; margin-bottom: 14px; }
+    .rv-featured .rv-stars { color: #f5c842; font-size: 18px; margin-bottom: 10px; }
+    .rv-featured .rv-body  { font-size: 18px; line-height: 1.9; color: #e8e0d6; margin-bottom: 16px; }
+    .rv-featured .rv-footer { font-size: 14px; color: #7a6a5a; }
+
+    /* ─── PRODUCT ─── */
+    .product-section { padding: 72px 0; background: #fff; border-top: 1px solid var(--border); }
+    .product-section h2 { font-size: clamp(24px,5vw,34px); font-weight: 800; line-height: 1.3; margin-bottom: 6px; }
+    .product-section .product-sub { font-size: 17px; color: var(--mid); margin-bottom: 28px; line-height: 1.7; }
+    .spec-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 17px; }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-row .sk { color: var(--muted); }
+    .spec-row .sv { font-weight: 600; text-align: right; }
+    .spec-row .sv.hi { color: var(--green-dk); }
+
+    /* ─── CTA ─── */
+    .cta-section { padding: 80px 0; background: var(--green-deep); color: #fff; text-align: center; }
+    .cta-eyebrow { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #8fcf8f; margin-bottom: 16px; }
+    .cta-section h2 { font-size: clamp(26px,5.5vw,38px); font-weight: 800; color: #f5f0ea; line-height: 1.3; margin-bottom: 12px; }
+    .cta-section p  { color: #8aaa8a; font-size: 17px; margin-bottom: 36px; line-height: 1.8; }
+    .cta-btn {
+      display: block; width: 100%; max-width: 360px; margin: 0 auto;
+      background: var(--green); color: #fff; text-decoration: none;
+      padding: 22px 32px; border-radius: 16px; font-size: 20px; font-weight: 700; line-height: 1.3;
+    }
+    .cta-sub { margin-top: 18px; font-size: 14px; color: #4a6a4a; }
+
+    /* ─── DIVIDER ─── */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 480px) {
+      body { font-size: 17px; }
+      .wrap { padding: 0 18px; }
+      .hero { padding: 64px 0 56px; }
+      .hero h1 { font-size: 34px; }
+      .story, .why-section, .pivot-section, .solution-section,
+      .reviews-section, .product-section { padding: 56px 0; }
+      .story h2, .why-section h2, .pivot-section h2,
+      .solution-section h2, .reviews-section h2, .product-section h2 { font-size: 24px; }
+      .ing-row { grid-template-columns: 1fr; }
+      .ing-row.flip { direction: ltr; }
+      .ing-row .visual-block { display: none; }
+      .ing-row .ing-img { display: none; }
+      .proof-bar .pb-inner { gap: 20px; }
+      .proof-bar .pb-num { font-size: 28px; }
+      .rv-card .rv-body { font-size: 16px; }
+      .rv-featured .rv-body { font-size: 17px; }
+      .spec-row { font-size: 16px; flex-wrap: wrap; gap: 4px; }
+      .cta-btn { font-size: 18px; padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════
+  HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">오늘 밤도 참을 수 없다면</p>
+    <h1>야식, <em>끊지 마세요.</em></h1>
+    <p class="hero-sub">먹고 나서 쪼개면 됩니다.</p>
+    <p class="hero-desc">
+      끊어야 한다는 건 알지만, 현실적으로 쉽지 않습니다.<br>
+      그렇다면 억지로 참는 대신,<br>
+      내 몸의 분해 시스템을 바꿔야 합니다.
+    </p>
+    <p class="hero-scroll">scroll</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  STORY — 야식 다음 날 아침
+══════════════════════════════════ -->
+<section class="story">
+  <div class="wrap">
+    <span class="sec-label">이 이야기, 익숙하죠?</span>
+    <h2>야식 먹은 다음 날,<br>아침이 유독 무거운 이유</h2>
+    <p>단순히 <strong>'늦게 먹어서'가 아닙니다.</strong> 진짜 문제는 수면 중 정지되는 '소화 기관'에 있습니다.</p>
+
+    <!-- 히어로 이미지 영역 -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/story_morning_mirror.png" alt="아침 거울 앞 — 야식 후 붓기를 확인하는 여성" style="width:100%; border-radius:20px; display:block;">
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  WHY — 3단계 팩트
+══════════════════════════════════ -->
+<section class="why-section">
+  <div class="wrap">
+    <span class="sec-label">야식 후 붓기의 생리학</span>
+    <h2>야식 후 붓기 발생의<br>3단계 팩트</h2>
+
+    <div class="step-row">
+
+      <div class="step-card">
+        <div class="sc-num"><span class="n">1</span><span class="u">단계</span></div>
+        <div class="sc-body">
+          <p class="sc-title">소화 효소 감소와 단백질 정체</p>
+          <p class="sc-desc">수면 중에는 위장 운동이 멈춥니다. 밤에 먹은 고기, 튀김 등 묵직한 단백질과 지방 덩어리는 <strong>분해되지 못한 채 장내에 그대로 머물며 부패합니다.</strong></p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="sc-num"><span class="n">2</span><span class="u">단계</span></div>
+        <div class="sc-body">
+          <p class="sc-title">미분해 단백질의 염증 반응</p>
+          <p class="sc-desc">소화되지 않고 방치된 단백질 찌꺼기는 체내에서 이물질로 인식됩니다. 이는 혈관 주변에 <strong>즉각적인 염증 반응을 일으키고 체액을 탁하게 만듭니다.</strong></p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="sc-num"><span class="n">3</span><span class="u">단계</span></div>
+        <div class="sc-body">
+          <p class="sc-title">혈관 투과성 증가와 수분 누출</p>
+          <p class="sc-desc">염증 수치가 높아지면 혈관 벽이 느슨해집니다. 이때 핏속의 수분이 조직 세포 사이로 빠져나와 고이게 되는데, <strong>이것이 아침에 얼굴과 다리가 퉁퉁 붓는 근본적인 원인입니다.</strong></p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GIF 영역 -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/gif_blood_vessel.gif" alt="혈관 투과성 메커니즘 — 염증으로 혈관이 느슨해져 수분이 조직으로 누출되는 과정" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="insight-box">
+      <p class="ib-label">핵심 인사이트</p>
+      <p class="ib-text">결국 핵심은 "언제 먹었느냐"가 아니라,<br><strong>"수면 전 얼마나 확실하게 쪼개고 비워냈느냐"</strong>입니다.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  PIVOT
+══════════════════════════════════ -->
+<section class="pivot-section">
+  <div class="wrap">
+    <span class="sec-label rose">그래서 찾은 해답</span>
+    <h2>야식을 끊을 수 없다면,<br>이지컷으로 쪼개고 비워내세요</h2>
+    <p>루즈루틴 이지컷은 단순한 이뇨제가 아닙니다.<br><strong>야식 후 발생하는 붓기의 경로를 단계별로 차단하는 4중 복합 솔루션</strong>입니다.</p>
+
+    <div class="inline-review">
+      <p class="review-text">"늦게 먹고 이지컷 먹고 자고나면 붓기가 없어서 너무 좋아요 😊"</p>
+      <div class="review-meta">
+        <span class="stars">★★★★★</span>
+        <span class="reviewer">azk3***</span>
+        <span class="badge">한달사용 · 재구매</span>
+      </div>
+    </div>
+
+    <div class="inline-review">
+      <p class="review-text">"붓기가 진짜 심한 편이라 이것저것 많이 먹어봤는데, 특히 야식 먹고 나서 효과가 느껴졌어요."</p>
+      <div class="review-meta">
+        <span class="stars">★★★★★</span>
+        <span class="reviewer">flsk****</span>
+        <span class="badge">일반 후기</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  SOLUTION — 4단계 시너지
+══════════════════════════════════ -->
+<section class="solution-section">
+  <div class="wrap">
+    <span class="sec-label amber">붓기 차단 4단계 시너지 배합</span>
+    <h2>단계별로 막고,<br>단계별로 배출합니다</h2>
+    <p class="sol-intro">붓기 영양제 대부분이 이뇨 한 가지에만 집중하는 반면, 이지컷은 <strong>야식 후 붓기가 발생하는 각 경로를 순서대로 차단하는 4가지 성분</strong>을 함께 담았습니다.</p>
+
+    <div class="ingredient-list">
+
+      <!-- 브로멜라인 -->
+      <div class="ing-row">
+        <div class="ing-info">
+          <span class="ing-step">1단계 분해</span>
+          <span class="ing-tag">단백질 분해</span>
+          <p class="ing-name">브로멜라인</p>
+          <p class="ing-from">파인애플 줄기 추출 효소</p>
+          <p class="ing-benefit">장내에 쌓인 미분해 단백질 덩어리를 수면 전 미세하게 쪼개어 <strong>염증 발생의 원인을 원천 차단합니다.</strong></p>
+        </div>
+        <div class="ing-img">
+          <img src="../02-shared-assets/ing_bromelain.png" alt="브로멜라인 — 파인애플 줄기 농축 추출" style="width:100%; height:160px; object-fit:cover; border-radius:14px; display:block;">
+        </div>
+      </div>
+
+      <!-- 퀘르세틴 -->
+      <div class="ing-row flip">
+        <div class="ing-info">
+          <span class="ing-step">2단계 방어</span>
+          <span class="ing-tag">혈관 강화</span>
+          <p class="ing-name">퀘르세틴</p>
+          <p class="ing-from">양파 추출 식물성 플라보노이드</p>
+          <p class="ing-benefit">염증으로 인해 느슨해진 혈관 벽을 탄탄하게 조여, <strong>수분이 조직 밖으로 새어 나가는 것을 방어합니다.</strong></p>
+        </div>
+        <div class="ing-img">
+          <img src="../02-shared-assets/ing_quercetin.png" alt="퀘르세틴 — 천연 항염 플라보노이드" style="width:100%; height:160px; object-fit:cover; border-radius:14px; display:block;">
+        </div>
+      </div>
+
+      <!-- 수국잎 -->
+      <div class="ing-row">
+        <div class="ing-info">
+          <span class="ing-step">3단계 배출</span>
+          <span class="ing-tag">수분 배출</span>
+          <p class="ing-name">수국잎</p>
+          <p class="ing-from">수국 잎 추출물</p>
+          <p class="ing-benefit">강력한 이뇨제가 아닌 순한 식물성 성분으로, <strong>이미 조직 사이에 고여버린 잉여 수분과 노폐물을 혈관을 통해 원활하게 배출시킵니다.</strong></p>
+        </div>
+        <div class="ing-img">
+          <img src="../02-shared-assets/ing_hydrangea.png" alt="수국잎 추출물 — 림프 순환 촉진" style="width:100%; height:160px; object-fit:cover; border-radius:14px; display:block;">
+        </div>
+      </div>
+
+      <!-- 차전자피 -->
+      <div class="ing-row flip">
+        <div class="ing-info">
+          <span class="ing-step">4단계 정돈</span>
+          <span class="ing-tag">나트륨 완화</span>
+          <p class="ing-name">차전자피</p>
+          <p class="ing-from">질경이 씨앗 껍질</p>
+          <p class="ing-benefit">야식의 과도한 나트륨을 흡착하여 체외로 밀어내고, <strong>다음 날 아침의 더부룩함을 깔끔하게 정돈합니다.</strong></p>
+        </div>
+        <div class="ing-img">
+          <img src="../02-shared-assets/ing_psyllium.png" alt="차전자피 — 장 점막 보호·나트륨 흡착" style="width:100%; height:160px; object-fit:cover; border-radius:14px; display:block;">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 인포그래픽 -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/infographic_flow.png" alt="이지컷 4단계 작동 순서 — 분해·방어·배출·정돈" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  PRODUCT FEATURES
+══════════════════════════════════ -->
+<section class="story" style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label">루즈루틴 이지컷, 이렇게 다릅니다</span>
+    <h2>설계부터 다른<br>2가지 차이</h2>
+
+    <div class="feature-row">
+      <div class="feature-card">
+        <p class="fc-title">번거로움 없는 깔끔한 보틀 패키지</p>
+        <p class="fc-desc">가루 날림이나 쓰레기가 발생하는 스틱 포장이 아닙니다. 위생적인 전용 보틀에 담겨 있어, 침대 옆이나 식탁 위에 두고 식후에 간편하게 열어 섭취할 수 있습니다.</p>
+      </div>
+      <div class="feature-card">
+        <p class="fc-title">목 넘김이 편안한 초소형 정제</p>
+        <p class="fc-desc">잠들기 전 위장에 부담을 주지 않도록, 불필요한 첨가물을 빼고 핵심 효소만 압축한 초소형 알약 형태로 제조했습니다.</p>
+      </div>
+    </div>
+
+    <!-- 제품 사진 영역 -->
+    <div style="margin-top: 28px;">
+      <img src="../02-shared-assets/product_main.png" alt="루즈루틴 이지컷 60정 패키지" style="width:100%; border-radius:16px; display:block;">
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  SOCIAL PROOF BAR
+══════════════════════════════════ -->
+<div class="proof-bar">
+  <div class="wrap">
+    <div class="pb-inner">
+      <div class="pb-item">
+        <div class="pb-num">793개</div>
+        <div class="pb-label">누적 구매 리뷰</div>
+      </div>
+      <div class="pb-item">
+        <div class="pb-num">93%</div>
+        <div class="pb-label">5점 만점 비율</div>
+      </div>
+      <div class="pb-item">
+        <div class="pb-num">64.7%</div>
+        <div class="pb-label">재구매율 (26년 3월)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  REVIEWS
+══════════════════════════════════ -->
+<section class="reviews-section">
+  <div class="wrap">
+    <span class="sec-label">실제 후기</span>
+    <h2>"야식 먹고 자도<br>다음 날 아침이 다릅니다"</h2>
+    <p class="sub-head">결과로 증명하는 실제 고객 리뷰<br>스마트스토어 누적 리뷰 793개 / 재구매율 64.7%</p>
+
+    <div class="review-stack">
+
+      <!-- 야식 직접 언급 1 -->
+      <div class="rv-featured">
+        <p class="rv-kw-dark">야식 후 필수템</p>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-body">"붓기가 진짜 심한 편이라 이것저것 많이 먹어봤는데 후기도 좋길래 궁금해서 한번 먹어보자 싶어서 주문했어요. 솔직히 기대 안 했는데 최근 먹은 붓기 영양제 중에 저한테는 제일 잘 맞는 것 같아요. 특히 야식 먹고 나서 효과가 느껴졌어요."</p>
+        <p class="rv-footer">flsk**** — 일반 후기</p>
+      </div>
+
+      <!-- 야식 직접 언급 2 -->
+      <div class="rv-featured" style="background:#2a1e18; border:1px solid #4a3428;">
+        <p class="rv-kw-dark">늦게 먹어도 괜찮아요</p>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-body">"늦게 먹고 이지컷 먹고 자고나면 붓기가 없어서 너무 좋아요 😊"</p>
+        <p class="rv-footer">azk3*** — 한달사용 · 재구매</p>
+      </div>
+
+      <!-- 만성 부종 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">만성 부종 해결</span>
+          <span class="rv-badge">일반 후기</span>
+        </div>
+        <p class="rv-body">"평소 만성 부종 때문에 오후만 되면 다리가 퉁퉁 붓고 아침마다 얼굴이 빵떡처럼 부어서 고민이 정말 많았어요. 다이어트 보조제도 여러 가지 먹어봤는데, 뭔가 달라지는 게 느껴진 건 이게 처음이에요."</p>
+        <p class="rv-footer">chlq********</p>
+      </div>
+
+      <!-- 아침 붓기 완화 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-badge">한달사용 · 재구매</span>
+        </div>
+        <p class="rv-body">"재구매를 했습니다! 아침에 자고 일어나면 눈이 많이 부어서 힘들었는데 붓기가 많이 빠졌어요!"</p>
+        <p class="rv-footer">chae******</p>
+      </div>
+
+      <!-- 속 편안함 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-badge">한달사용 · 재구매</span>
+        </div>
+        <p class="rv-body">"붓기에 좋다고 해서 한 달 먹었는데 확실히 속도 편하고 덜 부어요. 또 주문합니다."</p>
+        <p class="rv-footer">sala******</p>
+        <div class="rv-repurchase">최근에 아침에 일어나면 붓기로 힘들어서 구매했습니다.</div>
+      </div>
+
+      <!-- 다리 붓기 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-badge">한달사용</span>
+        </div>
+        <p class="rv-body">"붓기차를 아무리 먹어도 별 소용이 없는 거 같아서 다른 방법을 찾다가 주문했어요. 앉아서 일하는 직업이라 저녁이면 발부터 종아리까지 통통 부어서 집에 오는 길이 너무 힘들었는데, 이거 먹어보니까 달라지더라구요."</p>
+        <p class="rv-footer">bini****</p>
+      </div>
+
+      <!-- 계절성 부종 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-badge">한달사용</span>
+        </div>
+        <p class="rv-body">"원래 부종이 아침 저녁으로 차이가 많이 나는 편인데, 겨울이라 그런가 더 심해져서 영양제 챙겨먹고 있네요. 챙겨먹으니까 확실히 아침에 얼굴이랑 발, 다리 부어 있는게 많이 좋아지는 느낌이라 꾸준히 먹어보려구요."</p>
+        <p class="rv-footer">ajk7***</p>
+        <div class="rv-repurchase">몸에 붓기가 심한 편이라 다이어트 하면서 붓기관리 해주려고 챙겨먹고 있는데, 확실히 붓기가 많이 줄어들어서 만족합니다.</div>
+      </div>
+
+      <!-- 3회 재구매 -->
+      <div class="rv-card">
+        <div class="rv-header">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-badge">3회 구매</span>
+        </div>
+        <p class="rv-body">"그냥 꾸준히 먹고 있어요^^ 저녁 루틴이 되어서 ㅎㅎㅎ"</p>
+        <p class="rv-footer">csj1*******</p>
+        <div class="rv-repurchase">3번째 구매입니다! 꾸준히 먹어볼게요^^</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  PRODUCT
+══════════════════════════════════ -->
+<section class="product-section">
+  <div class="wrap">
+    <span class="sec-label">제품 정보</span>
+    <h2>루즈루틴 이지컷<br>브로멜라인 초고함량</h2>
+    <p class="product-sub">야식 후 저녁 루틴에 딱 2정.<br>자책 대신, 분해로 가벼운 내일 아침을 만드세요.</p>
+
+    <!-- 제품 사진 영역 -->
+    <div style="margin: 24px 0;">
+      <img src="../02-shared-assets/product_main.png" alt="루즈루틴 이지컷 60정 패키지 정면" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="spec-row"><span class="sk">제품명</span><span class="sv">루즈루틴 이지컷</span></div>
+    <div class="spec-row"><span class="sk">주요 성분</span><span class="sv hi">브로멜라인 · 퀘르세틴 · 수국잎 · 차전자피</span></div>
+    <div class="spec-row"><span class="sk">용량</span><span class="sv">60정 — 30일분</span></div>
+    <div class="spec-row"><span class="sk">섭취 방법</span><span class="sv">1일 2정, 야식·무거운 식사 직후 충분한 물과 함께</span></div>
+    <div class="spec-row"><span class="sk">크기</span><span class="sv">초소형 정제 — 목넘김 편함</span></div>
+
+    <div style="margin-top:20px; padding:18px 20px; background:var(--green-lt); border-radius:14px; font-size:16px; color:var(--green-dk); font-weight:600; text-align:center;">
+      💊 야식 직후 2정 · 자기 전 루틴으로 딱 맞아요
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  CTA
+══════════════════════════════════ -->
+<section class="cta-section">
+  <div class="wrap">
+    <p class="cta-eyebrow">Loose Routine</p>
+    <h2>오늘 밤 야식,<br>자책하지 마세요.</h2>
+    <p>
+      식후 2정, 루즈루틴 이지컷으로<br>
+      가벼운 내일 아침을 맞이하세요.
+    </p>
+    <a href="https://smartstore.naver.com/looseroutine/products/11070977520" class="cta-btn">
+      네이버 스마트스토어에서 혜택가로 확인하기 →
+    </a>
+    <p class="cta-sub">* 클릭 시 네이버 스마트스토어 상품 페이지로 이동합니다</p>
+  </div>
+</section>
+
+
+</body>
+</html>

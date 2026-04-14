@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커피 끊어도 피곤한 40대, NAD+ 수치가 문제였습니다</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #fdf7f2;
+      --cream2:    #f5ede4;
+      --cream3:    #ede3d8;
+      --border:    #e4d8cc;
+      --navy:      #2c3e60;
+      --navy-lt:   #eef1f7;
+      --navy-dk:   #1a2540;
+      --sage:      #5a8a6a;
+      --sage-lt:   #eaf3ed;
+      --amber:     #d4891a;
+      --amber-lt:  #fdf3e3;
+      --text:      #1c1c1c;
+      --mid:       #4a4a4a;
+      --muted:     #8a8a8a;
+      --warm-dark: #1e1a14;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 18px;
+      line-height: 1.9;
+      word-break: keep-all;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .wrap { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+
+    /* ─── VISUAL PLACEHOLDER ─── */
+    .vb {
+      margin: 28px 0; border-radius: 16px; overflow: hidden;
+      border: 1.5px dashed var(--border); background: var(--cream2);
+    }
+    .vb-label {
+      padding: 9px 16px; background: var(--cream3);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px; color: #aaa; font-weight: 700;
+    }
+    .vb-label span { background: #e0d8d0; border-radius: 4px; padding: 2px 7px; margin-right: 6px; color: #999; }
+    .vb-body { padding: 36px 20px; text-align: center; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .vb-title { font-size: 16px; font-weight: 700; color: #888; margin-bottom: 6px; }
+    .vb.tall .vb-body  { min-height: 260px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .vb.short .vb-body { min-height: 130px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy-dk);
+      color: #fff;
+      padding: 72px 0 64px;
+      text-align: left;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.75);
+      font-size: 12px; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px; letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 900; line-height: 1.35;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: #6ec6e0; font-style: normal; }
+    .hero .hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.7);
+      line-height: 1.8; margin-bottom: 28px;
+    }
+    .hero-tag {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+    }
+    .hero-tag span {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      font-size: 12px; padding: 4px 12px; border-radius: 12px;
+    }
+
+    /* ─── 섹션 공통 ─── */
+    section { padding: 56px 0; }
+    .sec-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .sec-label.navy { color: var(--navy); }
+    .sec-label.sage { color: var(--sage); }
+    .sec-label.amber { color: var(--amber); }
+    h2 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 800; line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    p { color: var(--mid); margin-bottom: 12px; }
+    strong { color: var(--text); font-weight: 700; }
+
+    /* ─── 공감 리스트 ─── */
+    .symptom-list {
+      margin: 24px 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .symptom-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--cream2); border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .sy-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .sy-text { font-size: 16px; color: var(--text); line-height: 1.6; }
+    .sy-text strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .sy-text span { font-size: 14px; color: var(--muted); }
+
+    /* ─── 팩트 바 ─── */
+    .fact-bar {
+      background: var(--navy);
+      color: #fff;
+      padding: 28px 24px;
+      border-radius: 18px;
+      margin: 28px 0;
+    }
+    .fact-bar p { color: rgba(255,255,255,0.8); margin: 0; font-size: 15px; line-height: 1.8; }
+    .fact-bar strong { color: #fff; }
+    .fact-bar .fact-num {
+      font-size: 42px; font-weight: 900; color: #6ec6e0;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .fact-bar .fact-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+
+    /* ─── NAD 감소 그래프 텍스트 ─── */
+    .nad-graph {
+      margin: 28px 0;
+      display: flex; gap: 0;
+      border-radius: 14px; overflow: hidden;
+      border: 1.5px solid var(--border);
+    }
+    .nad-bar {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      flex: 1; padding: 12px 6px 16px;
+      background: var(--cream2);
+      border-right: 1px solid var(--border);
+    }
+    .nad-bar:last-child { border-right: none; }
+    .nad-bar .nb-fill {
+      width: 36px; border-radius: 6px 6px 0 0;
+      background: var(--sage);
+      margin-bottom: 10px; transition: height 0.3s;
+    }
+    .nad-bar .nb-pct { font-size: 17px; font-weight: 800; color: var(--navy); }
+    .nad-bar .nb-age { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .nad-bar.highlight .nb-fill { background: #c94040; }
+    .nad-bar.highlight .nb-pct { color: #c94040; }
+
+    /* ─── 메커니즘 스텝 ─── */
+    .mech-flow {
+      margin: 28px 0;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .mech-step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mech-step:last-child { border-bottom: none; }
+    .ms-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      font-size: 15px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ms-body { flex: 1; }
+    .ms-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .ms-desc { font-size: 15px; color: var(--mid); line-height: 1.7; margin: 0; }
+    .ms-arrow {
+      text-align: center; color: var(--muted);
+      font-size: 20px; padding: 4px 0;
+    }
+
+    /* ─── 인사이트 박스 ─── */
+    .insight {
+      background: var(--navy-lt);
+      border-left: 4px solid var(--navy);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 20px;
+      margin: 28px 0;
+    }
+    .insight p { color: var(--navy-dk); margin: 0; font-size: 16px; line-height: 1.8; }
+    .insight strong { color: var(--navy); }
+
+    .insight.amber-style {
+      background: var(--amber-lt);
+      border-left-color: var(--amber);
+    }
+    .insight.amber-style p { color: #6b4a10; }
+    .insight.amber-style strong { color: var(--amber); }
+
+    /* ─── NMN 성분 카드 ─── */
+    .ingredient-cards {
+      margin: 28px 0;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .ing-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .ing-card-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    }
+    .ing-badge {
+      background: var(--navy); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+      padding: 4px 10px; border-radius: 8px;
+    }
+    .ing-badge.sage { background: var(--sage); }
+    .ing-name { font-size: 17px; font-weight: 800; color: var(--text); }
+    .ing-from { font-size: 13px; color: var(--muted); }
+    .ing-desc { font-size: 15px; color: var(--mid); line-height: 1.75; margin: 0; }
+
+    /* ─── 후기 ─── */
+    .reviews { background: var(--cream2); padding: 56px 0; }
+    .rv-list { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rv-card {
+      background: #fff; border-radius: 16px;
+      padding: 20px; border: 1px solid var(--border);
+    }
+    .rv-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .rv-stars { color: #e8a020; font-size: 14px; }
+    .rv-kw {
+      background: var(--sage-lt); color: var(--sage);
+      font-size: 12px; font-weight: 700;
+      padding: 3px 10px; border-radius: 8px;
+    }
+    .rv-badge {
+      background: var(--cream3); color: var(--muted);
+      font-size: 11px; padding: 2px 8px; border-radius: 6px;
+    }
+    .rv-body { font-size: 15px; color: var(--mid); line-height: 1.8; margin-bottom: 8px; }
+    .rv-footer { font-size: 12px; color: var(--muted); }
+
+    /* ─── 제품 스펙 ─── */
+    .product-section { padding: 56px 0; }
+    .spec-row {
+      display: flex; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; gap: 16px;
+    }
+    .spec-row:last-of-type { border-bottom: none; }
+    .sk { color: var(--muted); min-width: 80px; flex-shrink: 0; }
+    .sv { color: var(--text); flex: 1; line-height: 1.6; }
+    .sv.hi { color: var(--navy); font-weight: 700; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--navy-dk);
+      color: #fff;
+      padding: 64px 0;
+      text-align: center;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 14px; font-size: clamp(22px,5vw,30px); }
+    .cta-section p { color: rgba(255,255,255,0.75); margin-bottom: 8px; font-size: 16px; }
+    .cta-btn {
+      display: block; width: 100%;
+      margin-top: 28px;
+      background: #6ec6e0; color: var(--navy-dk);
+      font-size: 17px; font-weight: 800;
+      padding: 18px 24px; border-radius: 14px;
+      text-decoration: none; text-align: center;
+    }
+    .cta-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .nad-bar .nb-fill { width: 28px; }
+      .nad-bar .nb-pct { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════
+  HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">루즈루틴 NMN 영양제</span>
+    <h1>커피를 끊어도<br>피곤한 <em>40대</em>,<br>NAD+ 수치가<br>문제였습니다</h1>
+    <p class="hero-sub">
+      잠을 자도, 쉬어도, 커피를 마셔도 늘 피곤하다면 나이 탓이 아닙니다. 세포 에너지를 만드는 핵심 물질이 부족한 겁니다.
+    </p>
+    <div class="hero-tag">
+      <span>NMN 영양제</span>
+      <span>NAD+ 부족</span>
+      <span>40대 만성피로</span>
+      <span>저속노화</span>
+      <span>세포 에너지</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  공감 — 이런 증상 있으신가요?
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label">혹시 이런 경험 있으신가요?</span>
+    <h2>잠을 자도<br>쉬어도 피곤한 이유</h2>
+
+    <div class="symptom-list">
+      <div class="symptom-item">
+        <div class="sy-icon">😴</div>
+        <div class="sy-text">
+          <strong>아침에 일어나도 개운하지 않다</strong>
+          <span>8시간을 자도 몸이 무겁고 머리가 맑지 않아요</span>
+        </div>
+      </div>
+      <div class="symptom-item">
+        <div class="sy-icon">🧠</div>
+        <div class="sy-text">
+          <strong>뇌가 안개 낀 것 같다 (브레인 포그)</strong>
+          <span>집중이 잘 안 되고, 전보다 기억력이 떨어진 느낌이에요</span>
+        </div>
+      </div>
+      <div class="symptom-item">
+        <div class="sy-icon">☕</div>
+        <div class="sy-text">
+          <strong>커피 없이는 오전을 버티기 힘들다</strong>
+          <span>카페인에 의존하지 않으면 에너지가 바닥나요</span>
+        </div>
+      </div>
+      <div class="symptom-item">
+        <div class="sy-icon">📉</div>
+        <div class="sy-text">
+          <strong>예전보다 쉽게 지친다</strong>
+          <span>30대까지는 이러지 않았는데, 40대 이후로 확연히 달라졌어요</span>
+        </div>
+      </div>
+    </div>
+
+    <p>이 증상들, 단순히 나이가 들어서가 아닙니다. 세포 수준에서 에너지를 만드는 능력이 떨어졌기 때문이에요.</p>
+
+    <div class="insight">
+      <p>만성피로의 가장 흔한 원인 중 하나는 <strong>미토콘드리아의 에너지 생산 저하</strong>입니다. 그리고 그 핵심에 <strong>NAD+ 수치 감소</strong>가 있어요.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  NAD+ 감소 팩트
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label navy">세포 에너지의 핵심 물질</span>
+    <h2>NAD+가 뭔지<br>몰라도 괜찮습니다.<br>이것만 아세요.</h2>
+
+    <p>NAD+(니코틴아미드 아데닌 디뉴클레오타이드)는 우리 몸 모든 세포에서 에너지를 만들 때 반드시 필요한 조효소예요.</p>
+
+    <p>쉽게 말하면 <strong>세포의 발전소(미토콘드리아)가 전기를 만들 때 꼭 필요한 부품</strong>이에요. NAD+가 부족하면 아무리 영양을 섭취해도 에너지로 전환이 안 됩니다.</p>
+
+    <!-- NAD+ 연령별 감소 그래프 -->
+    <div class="nad-graph">
+      <div class="nad-bar">
+        <div class="nb-fill" style="height: 90px;"></div>
+        <div class="nb-pct">100%</div>
+        <div class="nb-age">20대</div>
+      </div>
+      <div class="nad-bar">
+        <div class="nb-fill" style="height: 65px;"></div>
+        <div class="nb-pct">70%</div>
+        <div class="nb-age">30대</div>
+      </div>
+      <div class="nad-bar highlight">
+        <div class="nb-fill" style="height: 45px; background:#c94040;"></div>
+        <div class="nb-pct">50%</div>
+        <div class="nb-age">40대</div>
+      </div>
+      <div class="nad-bar highlight">
+        <div class="nb-fill" style="height: 27px; background:#c94040;"></div>
+        <div class="nb-pct">30%</div>
+        <div class="nb-age">50대</div>
+      </div>
+      <div class="nad-bar highlight">
+        <div class="nb-fill" style="height: 18px; background:#c94040;"></div>
+        <div class="nb-pct">20%</div>
+        <div class="nb-age">60대</div>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:var(--muted); text-align:center; margin-top:-8px;">NAD+ 수치 연령별 변화 (20대 기준)</p>
+
+    <p style="margin-top: 20px;"><strong>40대에 이미 20대의 절반 이하로 떨어집니다.</strong> 세포가 에너지를 만드는 능력 자체가 줄어드는 거예요. 나이가 들수록 피곤한 게 느껴지는 이유가 여기 있어요.</p>
+
+    <div class="insight">
+      <p>NAD+는 음식으로 보충하기 어려워요. <strong>필요한 양의 수백 분의 1만 식사로 얻을 수 있어</strong> 나이가 들수록 외부에서 보충이 필요합니다.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  NMN 메커니즘
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label navy">NMN 영양제가 필요한 이유</span>
+    <h2>NMN이 NAD+를<br>만드는 방법</h2>
+
+    <p>NMN(니코틴아마이드 모노뉴클레오타이드)은 체내에서 <strong>NAD+로 직접 전환되는 전구체</strong>예요.</p>
+
+    <p>2013년 하버드 의대 데이비드 싱클레어 교수 연구팀이 NMN을 투여한 쥐에서 세포 에너지 수준이 젊은 쥐 수준으로 회복된 걸 발표하면서 <strong>저속노화 연구에서 가장 주목받는 성분</strong> 중 하나가 됐어요.</p>
+
+    <!-- 메커니즘 플로우 -->
+    <div class="mech-flow">
+      <div class="mech-step">
+        <div class="ms-num">1</div>
+        <div class="ms-body">
+          <p class="ms-title">NMN 섭취</p>
+          <p class="ms-desc">소장에서 흡수되어 빠르게 혈류로 이동합니다.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">2</div>
+        <div class="ms-body">
+          <p class="ms-title">NAD+ 전환</p>
+          <p class="ms-desc">세포 내에서 NMN이 NAD+로 전환되어 수치를 보충합니다.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">3</div>
+        <div class="ms-body">
+          <p class="ms-title">미토콘드리아 활성화</p>
+          <p class="ms-desc">충분한 NAD+가 확보되면 세포 발전소가 정상 가동됩니다. ATP(세포 에너지) 생산이 늘어납니다.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">4</div>
+        <div class="ms-body">
+          <p class="ms-title">에너지 개선, 세포 노화 지연</p>
+          <p class="ms-desc">만성피로 개선, 집중력 회복, 세포 회복 속도 향상이 기대되는 이유입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIF 메커니즘 -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/nmn_mechanism.gif" alt="NMN이 NAD+로 전환되어 미토콘드리아를 활성화하는 메커니즘" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="insight amber-style">
+      <p>저속노화 연구의 핵심은 <strong>세포의 에너지 생산 능력을 유지하는 것</strong>이에요. NMN은 이 접근법에서 가장 직접적인 방법 중 하나입니다.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  제품 소개 — 루즈루틴 NMN
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label sage">루즈루틴 NMN 영양제</span>
+    <h2>NMN만으로는<br>부족한 이유,<br>베타인을 더했습니다</h2>
+
+    <p>NMN이 NAD+로 전환될 때 <strong>메틸기(CH₃)</strong>가 소모됩니다. 메틸기가 부족하면 전환 효율이 떨어져요.</p>
+
+    <p><strong>베타인(TMG)</strong>은 이 메틸기를 공급하는 역할을 해요. NMN 단독보다 <strong>베타인을 함께 섭취할 때 NAD+ 전환율이 더 높아지는 이유</strong>입니다.</p>
+
+    <!-- 제품 사진 -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/nmn_product_1.png" alt="루즈루틴 NMN 베타인 영양제 패키지" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <!-- 성분 카드 -->
+    <div class="ingredient-cards">
+      <div class="ing-card">
+        <div class="ing-card-header">
+          <span class="ing-badge">핵심 성분</span>
+          <div>
+            <div class="ing-name">NMN</div>
+            <div class="ing-from">니코틴아마이드 모노뉴클레오타이드</div>
+          </div>
+        </div>
+        <p class="ing-desc">NAD+의 직접 전구체. 체내에서 빠르게 NAD+로 전환되어
+        세포 에너지 생산을 직접 지원합니다. <strong>저속노화 연구에서 가장 주목받는 성분</strong>이에요.</p>
+      </div>
+
+      <div class="ing-card">
+        <div class="ing-card-header">
+          <span class="ing-badge sage">시너지 성분</span>
+          <div>
+            <div class="ing-name">베타인 (TMG)</div>
+            <div class="ing-from">트리메틸글리신</div>
+          </div>
+        </div>
+        <p class="ing-desc">NMN이 NAD+로 전환될 때 필요한 메틸기를 공급합니다.
+        <strong>베타인과 NMN을 함께 섭취하면 전환 효율이 높아져요.</strong>
+        루즈루틴 NMN이 베타인을 함께 담은 이유입니다.</p>
+      </div>
+    </div>
+
+    <!-- 베타인 시너지 GIF -->
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/nmn_betaine_synergy.gif" alt="NMN과 베타인의 시너지 — 메틸기 공급으로 NAD+ 전환율 향상" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="fact-bar">
+      <div class="fact-num">38,860</div>
+      <div class="fact-label">월간 'nmn영양제' 검색량 (2026년 4월 기준)</div>
+      <p>경쟁 문서 대비 검색량이 <strong>월등히 높은 황금 키워드</strong>예요. 직구가 불안한 분들이 국내 브랜드를 찾고 있습니다.</p>
+    </div>
+
+    <div class="insight amber-style">
+      <p>NMN은 직구로 구매하는 분들이 많지만 <strong>원산지 불명·함량 불투명·통관 리스크</strong>가 있어요. 루즈루틴 NMN은 국내 제조, 함량 검증된 제품입니다.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  REVIEWS
+══════════════════════════════════ -->
+<section class="reviews">
+  <div class="wrap">
+    <span class="sec-label">실제 후기</span>
+    <h2>"피곤함이<br>달라졌어요"</h2>
+
+    <div class="rv-list">
+
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">세포 에너지 회복</span>
+          <span class="rv-badge">한달사용</span>
+        </div>
+        <p class="rv-body">"처음엔 미래를 위한 투자라 생각하고 큰 기대 없이 시작했는데, 한 달 정도 꾸준히 먹어보니 신체 나이가 확실히 젊어지는 게 체감되어 정말 신기합니다. 예전에는 자고 일어나도 몸이 천근만근이었는데, 요즘은 세포 하나하나가 깨어나는 듯한 개운함이 느껴지고 20대 때의 활력이 다시 돌아오는 기분이에요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">카페인 없이 맑은 정신</span>
+          <span class="rv-badge">꾸준히 재구매</span>
+        </div>
+        <p class="rv-body">"노화에 도움이 되는지는 모르겠지만, 먹은 날과 안먹은 날의 차이가 큽니다. 우선 점심시간 식곤증이 없어지고, 카페인 없이도 맑은 정신이 유지됩니다. 늘 빠지지않고 주문하고 있습니다."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">40대 저속노화 관리</span>
+          <span class="rv-badge">일반 후기</span>
+        </div>
+        <p class="rv-body">"40 넘어가면서 저속노화에 관심이 많아지네요. 내 몸에 투자하기로 NMN 영양제 선택해봤어요. 피부톤도 밝아지고 몸 컨디션이 한결 좋아졌어요. 꾸준히 먹어보려 합니다. 만족해요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">아침이 달라졌어요</span>
+          <span class="rv-badge">일반 후기</span>
+        </div>
+        <p class="rv-body">"처음엔 노화 관리 때문에 찾아보다가 NMN 영양제 먹기 시작했어요. 일주일 지나니까 아침에 몸이 덜 무겁고 하루 컨디션이 전보다 안정적인 느낌입니다. 속 불편함도 없고 꾸준히 먹기 부담없어서 만족중이에요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">갱년기 피로 개선</span>
+          <span class="rv-badge">일반 후기</span>
+        </div>
+        <p class="rv-body">"갱년기 증상 때문에 시작했는데 일단 새벽에 깨지 않고 잠을 푹 잡니다. 피로감이 많이 줄었고, 아침에 일어나기 너무 힘들었는데 복용 후 아침에 일어나기 훨씬 수월해졌어요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  PRODUCT SPEC
+══════════════════════════════════ -->
+<section class="product-section">
+  <div class="wrap">
+    <span class="sec-label">제품 정보</span>
+    <h2>루즈루틴 NMN<br>베타인 복합 영양제</h2>
+
+    <!-- 제품 사진 -->
+    <div style="margin: 24px 0;">
+      <img src="../02-shared-assets/nmn_product_2.png" alt="루즈루틴 NMN 베타인 영양제 정면" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="spec-row"><span class="sk">제품명</span><span class="sv">루즈루틴 NMN 베타인</span></div>
+    <div class="spec-row"><span class="sk">주요 성분</span><span class="sv hi">NMN · 베타인(TMG)</span></div>
+    <div class="spec-row"><span class="sk">용량</span><span class="sv">60캡슐 — 30일분</span></div>
+    <div class="spec-row"><span class="sk">섭취 방법</span><span class="sv">1일 2캡슐, 아침 공복 또는 식전에 충분한 물과 함께</span></div>
+    <div class="spec-row"><span class="sk">특징</span><span class="sv">국내 제조 · 함량 검증 · 직구 대비 안전</span></div>
+
+    <div style="margin-top:20px; padding:18px 20px; background:var(--navy-lt); border-radius:14px; font-size:16px; color:var(--navy); font-weight:600; text-align:center;">
+      아침 루틴 2캡슐. 40대 에너지 관리의 시작이에요.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  CTA
+══════════════════════════════════ -->
+<section class="cta-section">
+  <div class="wrap">
+    <h2>40대 피로,<br>이제 원인부터<br>잡아보세요.</h2>
+    <p>커피 대신 NAD+.</p>
+    <p>루즈루틴 NMN으로 세포 에너지부터 채우세요.</p>
+    <a href="https://smartstore.naver.com/looseroutine/products/10910473868" class="cta-btn">
+      네이버 스마트스토어에서 확인하기 →
+    </a>
+  </div>
+</section>
+
+
+</body>
+</html>

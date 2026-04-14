@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>흙빛 얼굴, 글루타치온과 화이트토마토로 바꾼 이유</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:   #faf8f4;
+    --ivory:   #f5f0e8;
+    --text:    #1a1a1a;
+    --mid:     #444444;
+    --muted:   #888888;
+    --accent:  #b8860b;   /* 골드 — 화이트토마토·글루타치온 */
+    --green:   #2e6b4f;   /* 피부·항산화 */
+    --red:     #c0392b;   /* 경고·숙취 */
+    --light-g: #f0f7f3;
+    --border:  #e8e0d0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  section { padding: 52px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h1 { font-size: clamp(28px, 7vw, 40px); font-weight: 900; line-height: 1.25; }
+  h2 { font-size: clamp(22px, 5vw, 30px); font-weight: 700; line-height: 1.35; }
+  h3 { font-size: clamp(18px, 4vw, 22px); font-weight: 700; line-height: 1.4; }
+
+  .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .tag.green { background: var(--green); }
+  .tag.red   { background: var(--red); }
+
+  .lead {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--mid);
+    margin-top: 18px;
+    line-height: 1.7;
+  }
+
+  .em { color: var(--accent); font-weight: 700; }
+  .em-g { color: var(--green); font-weight: 700; }
+
+  /* VB placeholder */
+  .vb {
+    background: #e8e4de;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    padding: 24px 16px;
+    margin: 28px 0;
+  }
+  .vb .vb-icon { font-size: 28px; opacity: 0.5; }
+  .vb .vb-label { font-weight: 700; color: #666; font-size: 14px; }
+  .vb .vb-size  { font-size: 12px; color: #aaa; }
+
+  /* fact box */
+  .fact-box {
+    background: var(--ivory);
+    border-radius: 16px;
+    padding: 24px 22px;
+    margin: 28px 0;
+  }
+  .fact-box .fact-num {
+    font-size: clamp(36px, 9vw, 52px);
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .fact-box .fact-label { font-size: 15px; color: var(--mid); margin-top: 6px; }
+
+  /* mechanism steps */
+  .steps { margin: 28px 0; display: flex; flex-direction: column; gap: 14px; }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .step-num {
+    min-width: 34px;
+    height: 34px;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-body strong { display: block; font-size: 16px; margin-bottom: 2px; }
+  .step-body span { font-size: 15px; color: var(--mid); }
+
+  /* compare table */
+  .compare-wrap { overflow-x: auto; margin: 28px 0; }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .compare-table th, .compare-table td {
+    padding: 12px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table th {
+    background: var(--ivory);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--mid);
+  }
+  .compare-table td:first-child { text-align: left; font-weight: 500; color: var(--mid); }
+  .compare-table .col-good { color: var(--green); font-weight: 700; }
+  .compare-table .col-bad  { color: var(--red); }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* ingredient highlight */
+  .ing-box {
+    background: linear-gradient(135deg, #fffbef 0%, #f0f7f3 100%);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 28px 22px;
+    margin: 28px 0;
+  }
+  .ing-box .ing-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ing-box .ing-badge {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  /* reviews */
+  .review-list { display: flex; flex-direction: column; gap: 18px; margin: 28px 0; }
+  .review-item {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .review-stars { color: #f5a623; font-size: 16px; margin-bottom: 8px; }
+  .review-text { font-size: 15px; color: var(--mid); line-height: 1.65; }
+  .review-meta { font-size: 12px; color: #bbb; margin-top: 8px; }
+
+  /* social proof bar */
+  .proof-bar {
+    display: flex;
+    justify-content: space-around;
+    background: var(--ivory);
+    border-radius: 16px;
+    padding: 24px 16px;
+    margin: 28px 0;
+    text-align: center;
+  }
+  .proof-item .proof-num {
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .proof-item .proof-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* product */
+  .product-spec {
+    background: var(--ivory);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin: 28px 0;
+  }
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .spec-label { color: var(--muted); }
+  .spec-row .spec-val   { font-weight: 700; }
+
+  /* cta */
+  section.cta-section {
+    background: var(--text);
+    color: #fff;
+  }
+  section.cta-section .em { color: #f5d78e; }
+  .cta-btn {
+    display: block;
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 18px 0;
+    border-radius: 14px;
+    margin-top: 28px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ① HERO -->
+<section class="hero">
+<div class="wrap">
+  <div class="tag">피부 칙칙함의 진짜 원인</div>
+  <h1>흙빛 얼굴,<br>글루타치온이 부족한<br>신호예요</h1>
+  <p class="lead">세안도 하고 수분크림도 바르는데<br>왜 얼굴이 어둡고 칙칙할까요.</p>
+
+  <img src="assets/vb1_face.png" alt="여성 얼굴 클로즈업" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ② 원인: 내부 문제 -->
+<section>
+<div class="wrap">
+  <div class="tag red">원인</div>
+  <h2>피부 바깥을 닦아도<br>어두운 이유가 있어요</h2>
+  <p style="margin-top:18px; color:var(--mid);">칙칙함의 원인은 피부 표면이 아니라 <span class="em">세포 안쪽</span>에 있어요.</p>
+
+  <div class="fact-box">
+    <div class="fact-num">3가지</div>
+    <div class="fact-label">흙빛 얼굴의 내부 원인</div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>멜라닌 과잉 생성</strong>
+        <span>자외선, 스트레스, 호르몬 변화가 멜라닌 세포를 과자극해요. 침착이 생기고 톤이 어두워져요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>세포 산화 누적</strong>
+        <span>활성산소가 피부 세포를 산화시켜 칙칙한 피부톤을 만들어요. 나이 들수록 회복이 느려져요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>간 해독 부담</strong>
+        <span>독소 처리가 느려지면 피부색에도 영향을 줘요. 술 마신 다음 날 얼굴이 누렇게 보이는 이유예요.</span>
+      </div>
+    </div>
+  </div>
+
+  <img src="assets/vb2_skin_cell.png" alt="피부 세포 단면 일러스트" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ③ 글루타치온 소개 -->
+<section>
+<div class="wrap">
+  <div class="tag green">해결</div>
+  <h2>몸이 원래 만드는 물질,<br>글루타치온이에요</h2>
+  <p style="margin-top:18px; color:var(--mid);">글루타치온은 우리 몸이 스스로 만드는 <span class="em-g">마스터 항산화제</span>예요. 피부과에서 미백 주사로도 쓰이는 성분이에요.</p>
+
+  <div class="fact-box">
+    <div class="fact-num">30대~</div>
+    <div class="fact-label">체내 글루타치온이 본격적으로 감소하는 시기예요</div>
+  </div>
+
+  <p style="color:var(--mid);">나이가 들면서 글루타치온이 줄어들고, 자외선과 스트레스가 더 빨리 소모시켜요. 외부에서 보충해야 하는 이유예요.</p>
+
+  <img src="assets/vb3_graph.jpg" alt="연령대별 체내 글루타치온 함량 변화" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ④ 글루타치온이 피부에 하는 일 -->
+<section>
+<div class="wrap">
+  <div class="tag green">메커니즘</div>
+  <h2>글루타치온이<br>피부에 하는 3가지 일</h2>
+
+  <div class="steps" style="margin-top:28px;">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>멜라닌 억제</strong>
+        <span>멜라닌 합성 효소(티로시나제)를 억제해요. 기미, 잡티, 전체적인 어두운 톤을 개선해요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>활성산소 제거</strong>
+        <span>산화된 피부 세포를 회복시켜요. 칙칙함의 근본 원인을 세포 단위에서 차단해요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>간 해독 지원</strong>
+        <span>간에서 독소를 처리할 때 글루타치온이 직접 결합해서 배출을 도와요. 피부색이 맑아지는 이유예요.</span>
+      </div>
+    </div>
+  </div>
+
+  <img src="assets/vb4_mechanism.gif" alt="글루타치온 메커니즘 애니메이션" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑤ 화이트토마토 — 핵심 성분 강조 -->
+<section>
+<div class="wrap">
+  <div class="tag">루즈루틴 핵심 성분</div>
+  <h2>"화이트토마토 효능"을<br>검색해 본 적 있나요?</h2>
+  <p style="margin-top:18px; color:var(--mid);">하얀 토마토의 핵심은 자외선을 튕겨내는 <span class="em">무색 카로티노이드(피토엔, 피토플루엔)</span>이에요. 글루타치온이 피부 속 멜라닌 생성을 억제한다면, 화이트토마토는 외부 자외선으로 인한 멜라닌 산화를 방어해요.</p>
+
+  <div class="ing-box">
+    <div class="ing-name">글루타치온 + 화이트토마토</div>
+    <div class="ing-badge">항산화 이중 방어 포뮬러</div>
+    <p style="font-size:15px; color:var(--mid); line-height:1.7;">루즈루틴은 피부 속을 정화하는 <strong>환원형 글루타치온(효모 추출물)</strong>과 겉을 방어하는 화이트토마토 추출물을 함께 배합했어요.<br><br>두 성분의 항산화 시너지로 칙칙한 피부톤을 안팎으로 동시에 관리할 수 있는 이유예요.</p>
+  </div>
+
+  <img src="assets/vb5_white_tomato.png" alt="화이트토마토" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑥ 숙취 연결 -->
+<section>
+<div class="wrap">
+  <div class="tag red">숙취 후 피부</div>
+  <h2>술 마신 다음 날<br>유독 얼굴이 칙칙한 이유</h2>
+  <p style="margin-top:18px; color:var(--mid);">알코올이 분해될 때 글루타치온이 대량 소모돼요. 간이 해독에 집중하면서 피부에 보낼 글루타치온이 사라지는 거예요.</p>
+
+  <div class="fact-box">
+    <div class="fact-num">80%↓</div>
+    <div class="fact-label">음주 후 간 내 글루타치온 수치가 급격히 떨어져요</div>
+  </div>
+
+  <p style="color:var(--mid);">글루타치온을 미리 보충해 두면 해독 속도가 빠르고, 다음 날 피부색이 달라요. 술 마시기 전날 복용하는 이유예요.</p>
+
+  <img src="assets/vb6_mirror.png" alt="거울 앞 여성" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑦ 환원형 vs 일반 비교 -->
+<section>
+<div class="wrap">
+  <div class="tag">흡수율의 차이</div>
+  <h2>글루타치온도 종류가<br>달라요</h2>
+  <p style="margin-top:18px; color:var(--mid);">일반 글루타치온은 소화 과정에서 분해돼 흡수율이 낮아요. 루즈루틴은 <span class="em">환원형(Reduced) 글루타치온</span>을 사용해요.</p>
+
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>일반 글루타치온</th>
+          <th>환원형 글루타치온</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>형태</td>
+          <td class="col-bad">산화형 (GSSG)</td>
+          <td class="col-good">환원형 (GSH)</td>
+        </tr>
+        <tr>
+          <td>소화 시 분해</td>
+          <td class="col-bad">대부분 분해됨</td>
+          <td class="col-good">분해 최소화</td>
+        </tr>
+        <tr>
+          <td>체내 활성</td>
+          <td class="col-bad">낮음</td>
+          <td class="col-good">높음</td>
+        </tr>
+        <tr>
+          <td>피부 효과</td>
+          <td class="col-bad">불명확</td>
+          <td class="col-good">멜라닌 억제 연구</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color:var(--mid); font-size:15px;">먹는 글루타치온은 성분 못지않게 흡수율이 중요해요. 환원형인지 확인하고 고르는 이유예요.</p>
+</div>
+</section>
+
+<!-- ⑧ 후기 -->
+<section class="reviews">
+<div class="wrap">
+  <div class="tag green">실제 후기</div>
+  <h2>흙빛 얼굴이<br>달라졌다는 이야기들</h2>
+
+  <div class="proof-bar">
+    <div class="proof-item">
+      <div class="proof-num">1,364개</div>
+      <div class="proof-label">누적 리뷰</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">98.8%</div>
+      <div class="proof-label">5점 비율</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">64.7%</div>
+      <div class="proof-label">재구매율</div>
+    </div>
+  </div>
+
+  <div class="review-list">
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">루즈루틴 환원형 글루타치온은 반신반의하며 시작했는데 확실히 피부가 맑아지고 톤이 정돈되는 느낌이에요. 예전엔 아침마다 얼굴이 칙칙했는데 요즘은 거울 볼 때 피부가 한결 화사해 보여서 기분이 좋아요. 속부터 맑아지는 느낌이라 단순 톤업 제품이랑은 달라요. 꾸준히 챙겨먹을 의향 있어요!</div>
+      <div class="review-meta">vsil***** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">40대 중반이 넘어가다 보니 피부는 칙칙해지고 홍조에 푸석함까지 더해져 스트레스를 많이 받았어요. 속부터 채워 줘야겠다는 생각이 들어 루즈루틴을 선택했는데 일주일째 꾸준히 먹고 있는데 확실히 얼굴에 붉은 끼도 옅어지고 푸석한 느낌이 사라졌어요. 오랜만에 만난 친구가 피부과 다니냐는 소리까지 하더라고요. 재구매 의사 10000%입니다!</div>
+      <div class="review-meta">kbm4*** / 40대</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">자고 일어나면 피부가 칙칙해서 스트레스를 많이 받았는데 화장으로 가리기보다 글루타치온을 먹으면 좋아진다는 지인 추천으로 구매했어요. 속부터 밝게 올라오는 게 느껴지고 얼굴이 많이 밝아졌다는 얘기를 자꾸 듣고 있어요.</div>
+      <div class="review-meta">yh**** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">큰 기대 없이 먹기 시작했는데 요즘은 확실히 얼굴톤이 한 톤 정도 밝아진 느낌이에요. 평소에 피부가 칙칙했던 편이라 톤업 제품으로만 커버했는데 지금은 속부터 맑아지는 느낌이에요. 꾸준히 먹다 보니 화장도 훨씬 잘 먹어요. 또 주문할게요!</div>
+      <div class="review-meta">gnzl*** / 재구매</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">얼굴이 칙칙해서 화장도 잘 안 받고 거울 보기가 싫더라고요. 먹기가 쉬워서 꾸준히 챙기고 있는데 화장도 잘 먹고 벌써 좋아졌다는 소리를 들었어요. 많이 먹지 않았는데도 이 정도면 계속 먹어볼게요!</div>
+      <div class="review-meta">rose******* / 구매 인증</div>
+    </div>
+  </div>
+
+  <img src="assets/vb7_bright_skin.png" alt="밝아진 피부 클로즈업" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑨ 제품 소개 -->
+<section class="product-section">
+<div class="wrap">
+  <div class="tag">루즈루틴 글루타치온 화이트 콜라겐</div>
+  <h2>환원형 글루타치온 +<br>화이트토마토 + 피쉬콜라겐</h2>
+
+  <img src="assets/vb8_product.png" alt="루즈루틴 글루타치온 제품" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+
+  <div class="product-spec">
+    <div class="spec-row">
+      <span class="spec-label">핵심 성분</span>
+      <span class="spec-val">환원형 글루타치온 + 화이트토마토 + 저분자 피쉬콜라겐 3,600mg</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">1일 섭취량</span>
+      <span class="spec-val">2캡슐 (식후)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">누적 리뷰</span>
+      <span class="spec-val">1,364개 / 5점 98.8%</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">재구매율</span>
+      <span class="spec-val">64.7%</span>
+    </div>
+  </div>
+
+  <p style="color:var(--mid); font-size:15px;">환원형 글루타치온(항산화) + 화이트토마토(자외선 방어) + 저분자 피쉬콜라겐 3,600mg(탄력 구조)을 한 번에 담아 흡수율과 스킨케어 시너지를 모두 잡았어요.</p>
+</div>
+</section>
+
+<!-- ⑩ CTA -->
+<section class="cta-section">
+<div class="wrap">
+  <h2><span class="em">흙빛 얼굴</span>이<br>글루타치온 부족이라면</h2>
+  <p style="margin-top:18px; color:#ccc; line-height:1.7;">피부과 주사 말고, 환원형 글루타치온과 화이트토마토의<br>강력한 항산화 시너지로 매일 조금씩 맑게 채워보세요.</p>
+  <p style="margin-top:14px; color:#ccc;">식후 2캡슐. 한 달이 다르고, 술 마신 다음 날이 달라요.</p>
+  <a href="https://smartstore.naver.com/looseroutine/products/9956971708" class="cta-btn">루즈루틴 글루타치온 보러가기</a>
+</div>
+</section>
+
+</body>
+</html>

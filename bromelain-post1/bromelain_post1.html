@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>골든밀크 대신 파인애플 효소 2알, 브로멜라인이 붓기에 더 빠른 이유</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #fdf9f4;
+      --cream2:    #f7f0e6;
+      --cream3:    #ede3d8;
+      --border:    #e4d8cc;
+      --green:     #2e6b4f;
+      --green-lt:  #eaf4ee;
+      --green-dk:  #1c4433;
+      --amber:     #b07d1a;
+      --amber-lt:  #fdf3e3;
+      --amber-dk:  #7a5410;
+      --red:       #c0392b;
+      --red-lt:    #fdecea;
+      --text:      #1c1c1c;
+      --mid:       #4a4a4a;
+      --muted:     #8a8a8a;
+      --warm-dark: #1a160e;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 18px;
+      line-height: 1.9;
+      word-break: keep-all;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .wrap { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+
+    /* ─── VISUAL PLACEHOLDER ─── */
+    .vb {
+      margin: 28px 0; border-radius: 16px; overflow: hidden;
+      border: 1.5px dashed var(--border); background: var(--cream2);
+    }
+    .vb-label {
+      padding: 9px 16px; background: var(--cream3);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px; color: #aaa; font-weight: 700;
+    }
+    .vb-label span {
+      background: #e0d8d0; border-radius: 4px;
+      padding: 2px 7px; margin-right: 6px; color: #999;
+    }
+    .vb-body {
+      padding: 36px 20px; text-align: center;
+      color: var(--muted); font-size: 15px; line-height: 1.7;
+    }
+    .vb-title { font-size: 16px; font-weight: 700; color: #888; margin-bottom: 6px; }
+    .vb.tall .vb-body  { min-height: 280px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .vb.short .vb-body { min-height: 140px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .vb.wide .vb-body  { min-height: 200px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--warm-dark);
+      color: #fff;
+      padding: 72px 0 64px;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.75);
+      font-size: 12px; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px; letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 900; line-height: 1.35;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: #6dd4a0; font-style: normal; }
+    .hero .hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .hero-tag {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+    }
+    .hero-tag span {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      font-size: 12px; padding: 4px 12px; border-radius: 12px;
+    }
+
+    /* ─── 섹션 공통 ─── */
+    section { padding: 56px 0; }
+    .sec-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .sec-label.green { color: var(--green); }
+    .sec-label.amber { color: var(--amber); }
+    h2 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 800; line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    p { color: var(--mid); margin-bottom: 12px; }
+    strong { color: var(--text); font-weight: 700; }
+
+    /* ─── 인사이트 박스 ─── */
+    .insight {
+      background: var(--green-lt);
+      border-radius: 14px; padding: 20px; margin: 28px 0;
+    }
+    .insight p { color: var(--green-dk); margin: 0; font-size: 16px; line-height: 1.8; }
+    .insight strong { color: var(--green); }
+
+    .insight.amber-style { background: var(--amber-lt); }
+    .insight.amber-style p { color: var(--amber-dk); }
+    .insight.amber-style strong { color: var(--amber); }
+
+    .insight.dark-style { background: var(--warm-dark); }
+    .insight.dark-style p { color: rgba(255,255,255,0.75); }
+    .insight.dark-style strong { color: #6dd4a0; }
+
+    /* ─── 팩트 바 ─── */
+    .fact-bar {
+      background: var(--green); color: #fff;
+      padding: 28px 24px; border-radius: 18px; margin: 28px 0;
+    }
+    .fact-bar p { color: rgba(255,255,255,0.85); margin: 0; font-size: 15px; line-height: 1.8; }
+    .fact-bar strong { color: #fff; }
+    .fact-num { font-size: 44px; font-weight: 900; color: #a8e6c4; line-height: 1; margin-bottom: 6px; }
+    .fact-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+
+    /* ─── 메커니즘 스텝 ─── */
+    .mech-flow { margin: 28px 0; display: flex; flex-direction: column; gap: 0; }
+    .mech-step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+    }
+    .mech-step:last-child { border-bottom: none; }
+    .ms-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-size: 15px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ms-body { flex: 1; }
+    .ms-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .ms-desc { font-size: 15px; color: var(--mid); line-height: 1.7; margin: 0; }
+
+    /* ─── 비교표 ─── */
+    .compare-wrap {
+      margin: 28px 0; border-radius: 16px; overflow: hidden;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .ct-head { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; background: var(--text); }
+    .ct-head div { padding: 14px 10px; font-size: 13px; font-weight: 700; text-align: center; color: #fff; }
+    .ct-head div:first-child { text-align: left; padding-left: 16px; }
+    .ct-head div.h-amber { background: var(--amber); }
+    .ct-head div.h-green { background: var(--green); }
+    .ct-row { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; border-bottom: 1px solid var(--border); }
+    .ct-row:last-child { border-bottom: none; }
+    .ct-row:nth-child(odd) { background: var(--cream2); }
+    .ct-row:nth-child(even) { background: var(--cream); }
+    .ct-row.winner { background: var(--green-lt) !important; }
+    .ct-row div { padding: 13px 10px; font-size: 14px; text-align: center; color: var(--mid); }
+    .ct-row div:first-child { text-align: left; padding-left: 16px; font-weight: 600; color: var(--text); }
+    .ct-row.winner div:first-child { color: var(--green); }
+
+    .stars { color: #e8a020; }
+    .stars-dim { color: #ddd; }
+    .badge-g { display:inline-block; background:var(--green-lt); color:var(--green); font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px; }
+    .badge-a { display:inline-block; background:var(--amber-lt); color:var(--amber); font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px; }
+    .badge-n { display:inline-block; background:#f0f0f0; color:#999; font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px; }
+    .badge-r { display:inline-block; background:var(--red-lt); color:var(--red); font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px; }
+
+    /* ─── 후기 ─── */
+    .reviews { background: var(--cream2); padding: 56px 0; }
+    .rv-list { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rv-card { background: #fff; border-radius: 16px; padding: 20px; border: 1px solid var(--border); }
+    .rv-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .rv-stars { color: #e8a020; font-size: 14px; }
+    .rv-kw { background: var(--green-lt); color: var(--green); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 8px; }
+    .rv-badge { background: var(--cream3); color: var(--muted); font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+    .rv-body { font-size: 15px; color: var(--mid); line-height: 1.8; margin-bottom: 8px; }
+    .rv-footer { font-size: 12px; color: var(--muted); }
+
+    /* ─── 제품 ─── */
+    .product-section { padding: 56px 0; }
+    .ing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
+    .ing-card { background: var(--cream2); border-radius: 14px; padding: 16px; display: flex; align-items: center; gap: 10px; }
+    .ing-card img { width: 44px; height: 44px; object-fit: contain; border-radius: 10px; background: #fff; flex-shrink: 0; }
+    .ing-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .ing-role { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+    .stat-row { display: flex; gap: 10px; margin: 24px 0; }
+    .stat-box { flex: 1; background: var(--cream2); border-radius: 12px; padding: 16px 10px; text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 900; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    .spec-row { display: flex; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; gap: 16px; }
+    .spec-row:last-of-type { border-bottom: none; }
+    .sk { color: var(--muted); min-width: 80px; flex-shrink: 0; }
+    .sv { color: var(--text); flex: 1; line-height: 1.6; }
+    .sv.hi { color: var(--green); font-weight: 700; }
+
+    /* ─── CTA ─── */
+    .cta-section { background: linear-gradient(160deg, var(--green-dk) 0%, var(--green) 100%); color: #fff; padding: 64px 0; text-align: center; }
+    .cta-section h2 { color: #fff; margin-bottom: 14px; font-size: clamp(22px,5vw,30px); }
+    .cta-section h2 em { font-style: normal; color: #a8e6c4; }
+    .cta-section p { color: rgba(255,255,255,0.75); margin-bottom: 8px; font-size: 16px; }
+    .cta-btn { display: block; width: 100%; margin-top: 28px; background: #fff; color: var(--green-dk); font-size: 17px; font-weight: 800; padding: 18px 24px; border-radius: 14px; text-align: center; }
+
+    @media (max-width: 480px) { body { font-size: 16px; } }
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════
+  HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">파인애플 효소 붓기 · 브로멜라인 효능</span>
+    <h1>골든밀크 대신<br><em>파인애플 효소 2알</em>,<br>붓기가 더 빠르게<br>빠지는 이유</h1>
+    <p class="hero-sub">매일 만들어 마셔도 붓기가 그대로라면, 목적은 같은데 방법이 달랐던 거예요.</p>
+    <div class="hero-tag">
+      <span>골든밀크 대신</span>
+      <span>파인애플 효소 붓기</span>
+      <span>브로멜라인 효능</span>
+      <span>항염 영양제</span>
+      <span>붓기 빼는 법</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  페인포인트 ① 번거로움
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label">솔직히 말하면</span>
+    <h2>골든밀크,<br>매일 만들기<br>번거롭지 않으세요?</h2>
+
+    <p>항염 효과 좋다고 해서 시작했는데, 아침마다 우유 데우고, 강황·후추·오일 계량하고, 섞고, 식히고. 그 시간이 15분이에요.</p>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb1_gm_morning_prep.png" alt="골든밀크 재료 준비 장면" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>처음엔 참는데, 매일 반복되면 결국 끊게 돼요. 이게 골든밀크를 꾸준히 마시기 어려운 첫 번째 이유예요.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  페인포인트 ② 칼로리
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label amber">두 번째 문제</span>
+    <h2>염증 잡으려다<br>칼로리만 높아져요</h2>
+
+    <p>골든밀크 레시피 보면 코코넛밀크 + 코코넛오일이 기본이에요. 한 잔에 200kcal 이상이에요.</p>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb2_gm_latte.png" alt="골든밀크 한 잔" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>체중 관리 중이라면 매일 마시기가 더 부담스러워져요. 건강을 위해 시작했는데 다른 걱정이 생기는 거예요.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  페인포인트 ③ 맛
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label amber">세 번째 문제</span>
+    <h2>강황 특유의 쓴맛,<br>결국 손이 안 가요</h2>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb3_person_tired.png" alt="골든밀크 마시기 지친 표정" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>처음엔 건강을 위해 참는데, 매일 아침 쓴맛과 강황 냄새가 반복되면 점점 손이 안 가게 돼요. 결국 냉장고 안에서 굳어버리는 강황 가루.</p>
+
+    <div class="insight amber-style">
+      <p>골든밀크를 찾는 이유는 결국 <strong>염증 완화와 붓기 제거</strong>예요. 그 목적만 남기고 불편함 세 가지를 없앨 수 있다면 어떨까요?</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  파인애플 혀 따가움 훅
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label">파인애플 효소의 진실</span>
+    <h2>파인애플 먹으면<br>혀가 따가운 이유,<br>그게 브로멜라인이에요</h2>
+
+    <p>파인애플을 먹으면 혀나 입안이 따가운 경험 있으시죠? 단백질을 분해하는 효소, 브로멜라인이 입안 점막을 살짝 분해하기 때문이에요.</p>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb4_pineapple_eating.png" alt="파인애플 먹는 장면" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>그럼 파인애플을 많이 먹으면 붓기에 효과가 있을까요? <strong>안타깝지만 아니에요.</strong></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  파인애플 한계 — 줄기
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label">왜 파인애플로는 안 될까</span>
+    <h2>브로멜라인은<br>줄기에 있어요,<br>과육이 아니라</h2>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb5_pineapple_slice.png" alt="파인애플 단면 클로즈업" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>우리가 먹는 과육에는 브로멜라인이 극소량만 들어있어요. 고농도 브로멜라인은 <strong>줄기</strong>에 집중돼 있어요. 일반적으로 먹지 않는 부분이에요.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  파인애플 한계 — 가열·소화
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label">그리고 또 한 가지</span>
+    <h2>가열하면 파괴되고,<br>먹어도 소화에<br>다 써버려요</h2>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb6_pineapple_canned.png" alt="통조림 파인애플" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>주스로 만들거나, 통조림 파인애플은 이미 효소 활성이 없는 상태예요. 효소는 열에 취약해요.</p>
+    <p>그나마 생 파인애플을 먹어도 위장에서 단백질 소화에 효소가 다 쓰여버려요. 붓기가 있는 조직까지 도달하는 양이 거의 없어요.</p>
+
+    <div class="insight">
+      <p>파인애플 효소 붓기 효과를 제대로 얻으려면 <strong>표준화된 함량의 브로멜라인 영양제</strong>를 공복에 섭취해야 해요. 그래야 소화에 쓰이지 않고 혈류로 직접 흡수돼요.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  브로멜라인 작동 원리
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label green">브로멜라인 작동 원리</span>
+    <h2>붓기를 직접 분해하는<br>4단계 메커니즘</h2>
+
+    <p>브로멜라인은 1957년부터 항염·부종 연구에 활용돼 왔어요. 단순히 염증을 억제하는 게 아니라 <strong>이미 쌓인 부기를 물리적으로 분해</strong>해요.</p>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb7_mechanism.gif" alt="브로멜라인 메커니즘" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="mech-flow">
+      <div class="mech-step">
+        <div class="ms-num">1</div>
+        <div class="ms-body">
+          <p class="ms-title">공복 섭취 → 혈류로 직접 흡수</p>
+          <p class="ms-desc">공복에 먹으면 소화효소로 쓰이지 않고 소장에서 직접 혈류로 흡수돼요. 표적 조직까지 도달해요.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">2</div>
+        <div class="ms-body">
+          <p class="ms-title">단백질 노폐물 직접 분해</p>
+          <p class="ms-desc">조직 사이에 쌓인 단백질 덩어리를 효소가 잘라내요. 붓기의 물리적 원인을 제거하는 거예요.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">3</div>
+        <div class="ms-body">
+          <p class="ms-title">림프 순환 촉진</p>
+          <p class="ms-desc">분해된 노폐물이 림프계를 통해 빠져나갈 수 있도록 흐름을 촉진해요. 부기가 빠지는 속도가 빨라져요.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">4</div>
+        <div class="ms-body">
+          <p class="ms-title">혈관 투과성 정상화</p>
+          <p class="ms-desc">혈관 밖으로 새는 수분을 줄여서 부기가 다시 쌓이는 걸 막아요. 재발 방지 효과예요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  골든밀크 vs 브로멜라인 비교표
+══════════════════════════════════ -->
+<section style="background: var(--cream2); padding: 56px 0;">
+  <div class="wrap">
+    <span class="sec-label">같은 목적, 다른 방법</span>
+    <h2>골든밀크 vs 이지컷<br>현실 비교</h2>
+
+    <p>목적은 같아요. 염증 완화, 붓기 제거. 방법이 달라요.</p>
+
+    <div class="compare-wrap">
+      <div class="ct-head">
+        <div></div>
+        <div class="h-amber">골든밀크<br><span style="font-weight:400;font-size:10px;">커큐민</span></div>
+        <div class="h-green">이지컷<br><span style="font-weight:400;font-size:10px;">브로멜라인</span></div>
+      </div>
+      <div class="ct-row winner">
+        <div>준비 시간</div>
+        <div><span class="badge-r">15분+</span></div>
+        <div><span class="badge-g">0분 (캡슐)</span></div>
+      </div>
+      <div class="ct-row winner">
+        <div>칼로리</div>
+        <div><span class="badge-r">200kcal+</span></div>
+        <div><span class="badge-g">0kcal</span></div>
+      </div>
+      <div class="ct-row winner">
+        <div>붓기 직접 분해</div>
+        <div><span class="stars">★</span><span class="stars-dim">★★★★</span></div>
+        <div><span class="stars">★★★★★</span></div>
+      </div>
+      <div class="ct-row winner">
+        <div>림프 순환</div>
+        <div><span class="badge-n">간접</span></div>
+        <div><span class="badge-g">직접 촉진</span></div>
+      </div>
+      <div class="ct-row">
+        <div>항염 작용</div>
+        <div><span class="stars">★★★★</span></div>
+        <div><span class="stars">★★★★</span></div>
+      </div>
+      <div class="ct-row winner">
+        <div>지속 가능성</div>
+        <div><span class="badge-a">매일 만들어야</span></div>
+        <div><span class="badge-g">하루 2알</span></div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <p>브로멜라인이 더 <strong>직접적으로, 더 편하게</strong> 목적을 달성해요.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  퀘르세틴 시너지
+══════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="sec-label green">흡수율의 비밀</span>
+    <h2>브로멜라인 효과를<br>높이는 조합,<br>퀘르세틴</h2>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb8_quercetin_foods.png" alt="퀘르세틴 식품 사과 양파 케일" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <p>퀘르세틴이 장벽 투과성을 높여서 브로멜라인이 혈류로 더 잘 흡수되게 도와줘요. 브로멜라인을 단독으로 먹는 것보다 <strong>흡수율이 유의미하게 올라가요.</strong></p>
+
+    <div class="fact-bar">
+      <div class="fact-num">2배+</div>
+      <div class="fact-label">퀘르세틴 병용 시 브로멜라인 흡수율 향상</div>
+      <p>이지컷이 브로멜라인과 퀘르세틴을 <strong>함께 담은 이유</strong>예요.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  REVIEWS
+══════════════════════════════════ -->
+<section class="reviews">
+  <div class="wrap">
+    <span class="sec-label">실제 후기</span>
+    <h2>"골든밀크 끊고<br>이걸로 바꿨어요"</h2>
+
+    <div class="rv-list">
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">야식 후 붓기</span>
+          <span class="rv-badge">재구매</span>
+        </div>
+        <p class="rv-body">"골든밀크 6개월 마셨는데 솔직히 붓기엔 효과를 잘 모르겠더라고요. 이걸로 바꾸고 나서 아침에 일어날 때 손발이 확실히 달라요. 만들 필요도 없으니까 오히려 더 꾸준히 먹게 되는 것 같아요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">아침 붓기</span>
+          <span class="rv-badge">장기 복용</span>
+        </div>
+        <p class="rv-body">"강황이 좋다고 해서 골든밀크 마시다가 칼로리 높다는 걸 알고 고민하던 중에 브로멜라인 영양제 알게 됐어요. 이게 훨씬 직접적으로 붓기에 효과 있는 것 같고, 하루 2알이라 챙기기도 편해요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-stars">★★★★★</span>
+          <span class="rv-kw">파인애플 효소 붓기</span>
+          <span class="rv-badge">인증 후기</span>
+        </div>
+        <p class="rv-body">"파인애플 효소가 붓기에 좋다고 해서 파인애플도 먹어봤는데 차이를 못 느꼈거든요. 브로멜라인 영양제는 달라요. 공복에 먹으면 오후에 다리 붓기가 훨씬 빨리 빠지는 게 느껴져요."</p>
+        <p class="rv-footer">구매 인증 후기</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  제품 소개
+══════════════════════════════════ -->
+<section class="product-section">
+  <div class="wrap">
+    <span class="sec-label green">루즈루틴 이지컷</span>
+    <h2>브로멜라인 + 퀘르세틴<br>4가지 복합 성분</h2>
+
+    <div style="margin: 28px 0;">
+      <img src="../02-shared-assets/product_main.png" alt="루즈루틴 이지컷" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div style="margin: 28px 0;">
+      <img src="assets/vb9_capsule_2pills.png" alt="이지컷 캡슐 2알" style="width:100%; border-radius:16px; display:block;">
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">793+</div>
+        <div class="stat-label">누적 리뷰</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">93%</div>
+        <div class="stat-label">5점 비율</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">64.7%</div>
+        <div class="stat-label">재구매율</div>
+      </div>
+    </div>
+
+    <div class="ing-grid">
+      <div class="ing-card">
+        <img src="../02-shared-assets/ing_bromelain.png" alt="브로멜라인">
+        <div><div class="ing-name">브로멜라인</div><div class="ing-role">부기 직접 분해</div></div>
+      </div>
+      <div class="ing-card">
+        <img src="../02-shared-assets/ing_quercetin.png" alt="퀘르세틴">
+        <div><div class="ing-name">퀘르세틴</div><div class="ing-role">흡수율 향상·항염</div></div>
+      </div>
+      <div class="ing-card">
+        <img src="../02-shared-assets/ing_hydrangea.png" alt="수국잎">
+        <div><div class="ing-name">수국잎</div><div class="ing-role">림프 순환</div></div>
+      </div>
+      <div class="ing-card">
+        <img src="../02-shared-assets/ing_psyllium.png" alt="차전자피">
+        <div><div class="ing-name">차전자피</div><div class="ing-role">장 건강·배출</div></div>
+      </div>
+    </div>
+
+    <div class="spec-row"><span class="sk">제품명</span><span class="sv">루즈루틴 이지컷</span></div>
+    <div class="spec-row"><span class="sk">주요 성분</span><span class="sv hi">브로멜라인 · 퀘르세틴 · 수국잎 · 차전자피</span></div>
+    <div class="spec-row"><span class="sk">섭취 방법</span><span class="sv">1일 2캡슐, 공복 또는 식전</span></div>
+    <div class="spec-row"><span class="sk">특징</span><span class="sv">골든밀크 대비 0kcal, 준비 0분, 국내 제조</span></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+  CTA
+══════════════════════════════════ -->
+<section class="cta-section">
+  <div class="wrap">
+    <h2>골든밀크 대신<br><em>2알로 더 빠르게</em></h2>
+    <p>매일 만들 필요 없어요.</p>
+    <p>칼로리 걱정 없어요.</p>
+    <p>공복에 2알, 붓기부터 직접 잡아요.</p>
+    <a href="https://smartstore.naver.com/looseroutine/products/11070977520" class="cta-btn">루즈루틴 이지컷 확인하기 →</a>
+  </div>
+</section>
+
+
+</body>
+</html>
