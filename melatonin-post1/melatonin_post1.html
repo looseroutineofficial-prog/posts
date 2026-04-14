@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>누워도 잠 안 오는 건, 멜라토닌이 아니라 뇌가 긴장한 거예요</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:  #faf8f4;
+    --ivory:  #f5f0e8;
+    --text:   #1a1a1a;
+    --mid:    #444444;
+    --muted:  #888888;
+    --night:  #1e2d4a;   /* 딥 네이비 — 수면 */
+    --lavender: #7c6fb0; /* 라벤더 — 테아닌·이완 */
+    --soft:   #e8e4f4;   /* 연보라 배경 */
+    --border: #e8e0d0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  section { padding: 52px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h1 { font-size: clamp(28px, 7vw, 40px); font-weight: 900; line-height: 1.25; }
+  h2 { font-size: clamp(22px, 5vw, 30px); font-weight: 700; line-height: 1.35; }
+  h3 { font-size: clamp(18px, 4vw, 22px); font-weight: 700; line-height: 1.4; }
+
+  .tag {
+    display: inline-block;
+    background: var(--night);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .tag.lavender { background: var(--lavender); }
+
+  .lead {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--mid);
+    margin-top: 18px;
+    line-height: 1.7;
+  }
+
+  .em   { color: var(--night); font-weight: 700; }
+  .em-l { color: var(--lavender); font-weight: 700; }
+
+  /* VB placeholder */
+  .vb {
+    background: #e8e4de;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    padding: 24px 16px;
+    margin: 28px 0;
+  }
+  .vb .vb-icon  { font-size: 28px; opacity: 0.5; }
+  .vb .vb-label { font-weight: 700; color: #666; font-size: 14px; }
+  .vb .vb-size  { font-size: 12px; color: #aaa; }
+
+  /* fact box */
+  .fact-box {
+    background: var(--ivory);
+    border-radius: 16px;
+    padding: 24px 22px;
+    margin: 28px 0;
+  }
+  .fact-box .fact-num {
+    font-size: clamp(36px, 9vw, 52px);
+    font-weight: 900;
+    color: var(--night);
+    line-height: 1;
+  }
+  .fact-box .fact-label { font-size: 15px; color: var(--mid); margin-top: 6px; }
+
+  /* steps */
+  .steps { margin: 28px 0; display: flex; flex-direction: column; gap: 14px; }
+  .step  { display: flex; align-items: flex-start; gap: 14px; }
+  .step-num {
+    min-width: 34px; height: 34px;
+    background: var(--lavender); color: #fff;
+    font-weight: 700; font-size: 15px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-body strong { display: block; font-size: 16px; margin-bottom: 2px; }
+  .step-body span   { font-size: 15px; color: var(--mid); }
+
+  /* stat highlight */
+  .stat-highlight {
+    background: var(--night);
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin: 28px 0;
+    text-align: center;
+    color: #fff;
+  }
+  .stat-highlight .stat-arrow {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .stat-highlight .stat-big {
+    font-size: clamp(42px, 10vw, 60px);
+    font-weight: 900;
+    line-height: 1;
+    color: #c4b8f0;
+  }
+  .stat-highlight .stat-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  /* synergy stages */
+  .synergy-stages { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+  .synergy-stage {
+    border-radius: 16px;
+    padding: 20px 20px;
+    position: relative;
+  }
+  .synergy-stage.s1 { background: #eeeaf8; }
+  .synergy-stage.s2 { background: #fdf0f0; }
+  .synergy-stage.s3 { background: #f0f5ee; }
+  .synergy-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .synergy-stage.s1 .synergy-label { color: var(--lavender); }
+  .synergy-stage.s2 .synergy-label { color: #b85c5c; }
+  .synergy-stage.s3 .synergy-label { color: #4a7c59; }
+  .synergy-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .synergy-ings  { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .synergy-desc  { font-size: 14px; color: var(--mid); line-height: 1.6; }
+  .synergy-arrow {
+    text-align: center;
+    font-size: 20px;
+    color: var(--muted);
+    opacity: 0.5;
+    margin: 2px 0;
+  }
+
+  /* ingredient cards */
+  .ing-grid { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+  .ing-row {
+    background: var(--soft);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .ing-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .ing-name { font-size: 16px; font-weight: 700; color: var(--night); margin-bottom: 4px; }
+  .ing-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  /* compare note */
+  .compare-note {
+    background: var(--soft);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  .compare-note strong { color: var(--night); }
+
+  /* compare */
+  .compare-wrap { overflow-x: auto; margin: 28px 0; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .compare-table th, .compare-table td {
+    padding: 12px 14px; text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table th { background: var(--ivory); font-weight: 700; font-size: 14px; color: var(--mid); }
+  .compare-table td:first-child { text-align: left; font-weight: 500; color: var(--mid); }
+  .compare-table .col-good { color: var(--lavender); font-weight: 700; }
+  .compare-table .col-bad  { color: #c0392b; }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* reviews */
+  .proof-bar {
+    display: flex; justify-content: space-around;
+    background: var(--ivory); border-radius: 16px;
+    padding: 24px 16px; margin: 28px 0; text-align: center;
+  }
+  .proof-item .proof-num {
+    font-size: clamp(26px, 6vw, 36px); font-weight: 900;
+    color: var(--night); line-height: 1;
+  }
+  .proof-item .proof-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .review-list { display: flex; flex-direction: column; gap: 18px; margin: 28px 0; }
+  .review-item {
+    background: #fff; border-radius: 16px;
+    padding: 20px 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .review-stars { color: #f5a623; font-size: 16px; margin-bottom: 8px; }
+  .review-text  { font-size: 15px; color: var(--mid); line-height: 1.65; }
+  .review-meta  { font-size: 12px; color: #bbb; margin-top: 8px; }
+
+  /* product spec */
+  .product-spec {
+    background: var(--ivory); border-radius: 16px;
+    padding: 24px 20px; margin: 28px 0;
+  }
+  .spec-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 15px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .spec-label { color: var(--muted); }
+  .spec-row .spec-val   { font-weight: 700; }
+
+  /* cta */
+  section.cta-section { background: var(--night); color: #fff; }
+  section.cta-section .em-l { color: #c4b8f0; }
+  .cta-btn {
+    display: block;
+    background: var(--lavender); color: #fff;
+    text-align: center; font-size: 18px; font-weight: 700;
+    padding: 18px 0; border-radius: 14px;
+    margin-top: 28px; text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ① HERO -->
+<section class="hero">
+<div class="wrap">
+  <div class="tag">수면의 질이 달라지는 이유</div>
+  <h1>누워도 잠 안 오는 건,<br>멜라토닌이 아니라<br>뇌가 긴장한 거예요</h1>
+  <p class="lead">충분히 피곤한데 왜 잠이 안 올까요.<br>문제는 수면 시간이 아니라 수면의 질이에요.</p>
+
+  <img src="assets/vb1_insomnia.png" alt="어두운 침실에 누워 천장을 바라보는 사람" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ② 원인: 뇌 긴장 -->
+<section>
+<div class="wrap">
+  <div class="tag">원인</div>
+  <h2>잠이 안 오는 게 아니라<br>뇌가 꺼지질 않는 거예요</h2>
+  <p style="margin-top:18px; color:var(--mid);">퇴근해도 머릿속에서 일 생각이 멈추질 않아요. 침대에 누워도 내일 일정, 못 끝낸 업무, 나눴던 대화들이 계속 돌아가요.</p>
+
+  <div class="fact-box">
+    <div class="fact-num">90분</div>
+    <div class="fact-label">스트레스를 받은 날, 잠들기까지 걸리는 평균 시간이에요</div>
+  </div>
+
+  <p style="color:var(--mid);">스트레스가 높아지면 코르티솔이 올라가요. 코르티솔은 멜라토닌 분비를 억제해요. 피곤한데 잠이 안 오는 건 의지 문제가 아니에요. <span class="em">뇌가 아직 각성 상태인 거예요.</span></p>
+
+  <img src="assets/vb2_brain.png" alt="밤에도 활성화된 뇌 일러스트" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ③ 멜라토닌 소개 -->
+<section>
+<div class="wrap">
+  <div class="tag">수면 호르몬</div>
+  <h2>멜라토닌은 어두워지면<br>자동으로 나오는 호르몬이에요</h2>
+  <p style="margin-top:18px; color:var(--mid);">빛이 줄어들면 뇌 송과체에서 멜라토닌이 분비되고, 체온이 떨어지면서 졸음이 와요. 이게 자연스러운 수면 신호예요. 그런데 이 스위치가 나이와 함께 망가지기 시작해요.</p>
+
+  <div class="stat-highlight">
+    <div class="stat-arrow">↘</div>
+    <div class="stat-big">절반 이하</div>
+    <div class="stat-sub">50대의 멜라토닌 분비량은 20대의 절반 이하예요.<br>단순히 예민해서가 아니라,<br><strong style="color:#fff;">나이 들며 체내 수면 스위치가 고장 난 거예요.</strong></div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>나이가 들수록 감소</strong>
+        <span>20대 이후 서서히 줄어요. 40대부터 수면의 질이 눈에 띄게 떨어지는 이유예요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>블루라이트가 억제</strong>
+        <span>스마트폰, 모니터 빛이 뇌를 낮으로 착각하게 만들어요. 자기 전 화면 사용이 멜라토닌 분비를 2시간 늦춰요.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>스트레스가 차단</strong>
+        <span>코르티솔이 높으면 멜라토닌이 제대로 나오질 않아요. 피곤한데 잠 못 드는 가장 큰 이유예요.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ④ 테아닌 — GIF 섹션 -->
+<section>
+<div class="wrap">
+  <div class="tag lavender">핵심 성분</div>
+  <h2>테아닌이 하는 일 —<br>"뇌를 끄는 스위치"예요</h2>
+  <p style="margin-top:18px; color:var(--mid);">테아닌은 녹차에서 추출한 아미노산이에요. 알파파를 유도해서 뇌를 각성 상태에서 이완 상태로 전환시켜요. <span class="em-l">졸리게 만드는 게 아니라 긴장을 풀어주는 거예요.</span></p>
+
+  <img src="assets/vb3_theanine.gif" alt="테아닌 알파파 유도 메커니즘 애니메이션" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+
+  <p style="color:var(--mid);">테아닌이 뇌 긴장을 풀어주면, 억제됐던 멜라토닌이 제대로 분비될 수 있어요. 먼저 뇌를 끄고 → 수면 호르몬이 작동하는 순서예요.</p>
+</div>
+</section>
+
+<!-- ⑤ 성분 조합 -->
+<section>
+<div class="wrap">
+  <div class="tag">루즈루틴 성분 포뮬러</div>
+  <h2>4가지 성분이<br>3단계로 작동해요</h2>
+  <p style="margin-top:18px; color:var(--mid);">성분을 나열한 게 아니에요. 잠들지 못하는 원인 순서대로, 체내 작용 순서에 맞게 배합했어요.</p>
+
+  <div class="synergy-stages">
+    <div class="synergy-stage s1">
+      <div class="synergy-label">1단계 — 긴장 차단</div>
+      <div class="synergy-title">뇌와 몸의 각성 상태를 먼저 끄는 단계예요</div>
+      <div class="synergy-ings">락티움 + 테아닌</div>
+      <div class="synergy-desc">락티움은 스트레스로 높아진 코르티솔을 낮추고, 테아닌은 알파파를 유도해 뇌 긴장을 풀어줘요. 수면 호르몬이 작동할 수 있는 환경을 만들어요.</div>
+    </div>
+    <div class="synergy-arrow">↓</div>
+    <div class="synergy-stage s2">
+      <div class="synergy-label">2단계 — 입면 유도</div>
+      <div class="synergy-title">자연스럽게 졸음을 불러오는 단계예요</div>
+      <div class="synergy-ings">타트체리 (천연 멜라토닌)</div>
+      <div class="synergy-desc">타트체리는 천연 멜라토닌을 공급해요. 긴장이 풀린 뒤 수면 호르몬이 제대로 올라오도록 도와 자연스럽게 잠들게 해줘요.</div>
+    </div>
+    <div class="synergy-arrow">↓</div>
+    <div class="synergy-stage s3">
+      <div class="synergy-label">3단계 — 수면 유지</div>
+      <div class="synergy-title">깊은 잠이 끊기지 않게 유지하는 단계예요</div>
+      <div class="synergy-ings">트립토판</div>
+      <div class="synergy-desc">트립토판은 세로토닌을 거쳐 멜라토닌을 지속적으로 합성해요. 중간에 깨지 않고 수면이 이어지게 도와줘요.</div>
+    </div>
+  </div>
+
+  <img src="assets/vb4_tart_cherry.png" alt="타트체리 클로즈업" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑥ 식물성 → 부작용 걱정 해소 -->
+<section>
+<div class="wrap">
+  <div class="tag">식물성 vs 합성</div>
+  <h2>수면제랑 달라요,<br>다음 날 멍한 느낌 없어요</h2>
+  <p style="margin-top:18px; color:var(--mid);">수면제나 합성 멜라토닌이 걱정되셨다면, 루즈루틴은 식물성 원료에서 추출했어요. 다음 날 멍한 느낌이 나는 데는 이유가 있어요.</p>
+
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>수면제·합성 멜라토닌</th>
+          <th>루즈루틴 식물성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>작용 방식</td>
+          <td class="col-bad">중추신경 강제 억제</td>
+          <td class="col-good">생체 리듬에 맞춘 자연 유도</td>
+        </tr>
+        <tr>
+          <td>체내 잔류</td>
+          <td class="col-bad">약효가 오래 남음</td>
+          <td class="col-good">잔류감 없이 자연 소실</td>
+        </tr>
+        <tr>
+          <td>다음 날 상태</td>
+          <td class="col-bad">멍함, 낮 졸림</td>
+          <td class="col-good">맑고 개운하게 기상</td>
+        </tr>
+        <tr>
+          <td>의존성</td>
+          <td class="col-bad">내성·의존성 우려</td>
+          <td class="col-good">부담 없이 꾸준히</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare-note">
+    합성 제제는 중추신경을 강제로 억제하고 약효가 오래 남아 아침이 무거워요. 루즈루틴의 식물성 원료는 <strong>체내 생체 시계와 동일한 리듬을 자연스럽게 유도</strong>하기 때문에 체내 잔류감 없이 깨끗하게 깰 수 있어요.
+  </div>
+
+  <img src="assets/vb5_morning.png" alt="아침 햇살 속 개운하게 기상하는 여성" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+</div>
+</section>
+
+<!-- ⑦ 후기 -->
+<section class="reviews">
+<div class="wrap">
+  <div class="tag lavender">실제 후기</div>
+  <h2>수면의 질이<br>달라졌다는 이야기들</h2>
+
+  <div class="proof-bar">
+    <div class="proof-item">
+      <div class="proof-num">359개</div>
+      <div class="proof-label">누적 리뷰</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">100%</div>
+      <div class="proof-label">5점 비율</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">64.7%</div>
+      <div class="proof-label">재구매율</div>
+    </div>
+  </div>
+
+  <div class="review-list">
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">직장 스트레스로 침대에서 1시간 넘게 뒤척이다 핸드폰 보고 새벽 5시 되고... 악순환이었는데, 먹기 시작하고 일주일 지나니 머릿속이 조용해지는 느낌이 들었어요. 지금은 30분 전에 한 알 먹고 가벼운 스트레칭하면 10분 안에 잠들어요. 아침에 개운한 느낌이 확실히 달라요!</div>
+      <div class="review-meta">jw9k2*** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">식물성 멜라토닌이라 부담 없고, 테아닌·락티움이 함께 들어 있어서 긴장 완화와 숙면에 도움이 돼요. 아침에 일어나도 머리가 맑고, 약간의 피로감이나 무거움 없이 자연스럽게 깬다는 게 신기했어요. 잠자기 전에 챙기기 부담 없어요.</div>
+      <div class="review-meta">ryun**** / 재구매</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">7시간을 자도 피로가 해소되지 않고 개운함이 없었는데, 섭취하고 나서 깨는 횟수가 현저히 줄었어요. 아침에 눈을 떴을 때 온몸이 회복된 듯한 느낌이에요. 잠의 깊이가 달라졌다는 게 체감됩니다. 이제야 숙면이 어떤 건지 알게 됐어요.</div>
+      <div class="review-meta">jw9k2*** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">수면 시간은 여전히 짧지만 4시간을 깊게 자니까 전에 6시간 설설 자던 것보다 훨씬 개운해요. 아침에 얼굴 붓기도 덜하고 애들한테 짜증 내는 횟수도 줄었어요. 남편도 제가 표정이 밝아졌다고 해요. 워킹맘들 꼭 드셔보세요!</div>
+      <div class="review-meta">jw9k2*** / 구매 인증</div>
+    </div>
+    <div class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">자연 유래 성분이라 부담 없이 꾸준히 먹기 좋아요. 하루 종일 쌓인 긴장이 자연스럽게 풀리면서 마음이 차분해지는 느낌이에요. 부드럽게 잠들고 아침에 상쾌하게 일어날 수 있어서 수면 루틴이 확실히 좋아졌어요.</div>
+      <div class="review-meta">heey**** / 재구매</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ⑧ 제품 스펙 -->
+<section class="product-section">
+<div class="wrap">
+  <div class="tag">루즈루틴 멜라토닌</div>
+  <h2>식물성 멜라토닌 +<br>테아닌 + 락티움 + 트립토판</h2>
+
+  <img src="assets/vb6_product.png" alt="루즈루틴 멜라토닌 제품" style="width:100%; border-radius:16px; margin:28px 0; display:block;">
+
+  <div class="product-spec">
+    <div class="spec-row">
+      <span class="spec-label">핵심 성분</span>
+      <span class="spec-val">식물성 멜라토닌 + 테아닌 + 락티움 + 트립토판 + 타트체리</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">복용법</span>
+      <span class="spec-val">취침 30분 전 1정</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">누적 리뷰</span>
+      <span class="spec-val">359개 / 5점 100%</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">재구매율</span>
+      <span class="spec-val">64.7%</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ⑨ CTA -->
+<section class="cta-section">
+<div class="wrap">
+  <h2><span class="em-l">누워도 잠 안 오는 밤</span>이<br>계속된다면</h2>
+  <p style="margin-top:18px; color:#ccc; line-height:1.7;">의지 문제가 아니에요. 뇌가 긴장을 못 푸는 거예요.<br>식물성 멜라토닌 + 테아닌으로 뇌부터 끄고 시작해 보세요.</p>
+  <p style="margin-top:14px; color:#ccc;">취침 30분 전 1정. 잠의 깊이가 달라져요.</p>
+  <a href="https://smartstore.naver.com/looseroutine/products/10905066593" class="cta-btn">루즈루틴 멜라토닌 보러가기</a>
+</div>
+</section>
+
+</body>
+</html>
